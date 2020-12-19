@@ -1,0 +1,33 @@
+.header {
+    background-color: $white;
+    color: $primary;
+    border-bottom: $border-width solid $border-color;
+
+    display: flex;
+
+    &-left {
+        text-align: left;
+        flex: 0 0 20%;
+    }
+
+    &-center {
+        text-align: center;
+        flex: 1 1 0;
+    }
+
+    &-right {
+        text-align: right;
+        flex: 0 0 20%;
+    }
+
+    &-btn {
+        padding: map-get($spacers, 2) map-get($spacers, 3);
+        color: inherit;
+        display: block;
+        white-space: nowrap;
+
+        &:hover {
+            color: inherit;
+        }
+    }
+}

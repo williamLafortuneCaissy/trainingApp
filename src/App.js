@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import './assets/scss/style.scss';
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PlanView from './components/PlanView';
+import PlanActive from './components/PlanActive';
+import PlanExercise from './components/PlanExercise';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Router>
+                <Switch>
+                    <Route path={'/'} exact>
+                        <PlanView />
+                    </Route>
+                    <Route path={'/active'}>
+                        <PlanActive />
+                    </Route>
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
