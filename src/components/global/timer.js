@@ -1,58 +1,55 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
 const Timer = (props) => {
-    let startTime = props.startTime;
-    const timer = props.timer;
+    const [seconds, setSeconds] = useState(null);
+    const [timer, setTimer] = useState(false); // used to open modal + start/close timer
+    const [start, setStart] = useState(null); // date.now() when timer start, used for time diff
 
-    var timerInterval = null;
     const startTimer = () => {
-        startTime = Date.now();
-        console.log('timer started');
-
-        timerInterval = setInterval(() => {
-            console.log(time);
-            const diff = (Date.now() - startTime) / 1000;
-            const nextTime = timer - diff;
-            {nextTime < 0 ? stopTimer():
-                setTime( nextTime.toFixed(0) );
-            }
-        }, 100);
+        setSeconds(props.time);
+        setStart( Date.now() );
+        setTimer(true);
     }
     const stopTimer = () => {
-        console.log('timer stoped');
-        clearInterval(timerInterval)
+        setSeconds(0);
+        setTimer(false);
     }
 
-    const [modal, setModal] = useState(false)
-    const [time, setTime] = useState(0);
-    const openModal = () => {
-        startTimer();
-        setModal(true)
-    }
-    const closeModal = () => {
-        stopTimer();
-        setModal(false)
-    }
+    useEffect(() => {
+        let interval = null;
+        if (timer) {
+            interval = setInterval(() => {
+                if (seconds > 0) {
+                    const diff = ((Date.now() - start) / 1000).toFixed(0);
+                    setSeconds(props.time - diff);
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+
+        // returns something on unmount (can return function to trigger it)
+        return () => clearInterval(interval);
+
+    }, [timer, seconds]);
+
 
     return (
         <Fragment>
 
-            <Button variant="primary" size="lg" onClick={openModal}>Start Timer</Button>
-
-            <Modal show={modal} onHide={closeModal} className="text-dark timer">
+            <Button size="lg" onClick={startTimer}>Open modal</Button>
+            <Modal show={timer} onHide={stopTimer} className="text-dark timer">
                 <Modal.Body>
                     <div>
                         <div className="display-1 timer-number mb-5">
-                            {time}
+                            {seconds}
                         </div>
-                        <Button variant="secondary" onClick={closeModal}>Close</Button>
-                        <Button variant="primary">Save changes</Button>
+                        <Button variant="secondary" size="lg" onClick={stopTimer}>Stop Timer</Button>
                     </div>
                 </Modal.Body>
             </Modal>
-
         </Fragment>
     );
 }

@@ -62,7 +62,7 @@ const PlanExercise = (props) => {
                             </div>
                             {exercise.time &&
                                 <div className="mb-4">
-                                    <Timer startTime={Date.now()} timer={10} />
+                                    <Timer time={exercise.time} />
                                     {/* <div className="display-1 text-center">{timer}</div> */}
                                 </div>
                             }
