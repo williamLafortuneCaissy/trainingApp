@@ -1,0 +1,24 @@
+
+.timer {
+    .modal{
+        &-content {
+            height: calc(100vw - 30px);
+            width: calc(100vw - 30px);
+            border-radius: 50%;
+        }
+
+        &-body {
+            margin-top: auto;
+            margin-bottom: auto;
+            text-align: center;
+            flex: 0 1 auto;
+
+        }
+    }
+
+    &-number {
+        // font-family: 'Roboto Mono', monospace;
+        font-family: 'Roboto Slab', serif;
+
+    }
+}

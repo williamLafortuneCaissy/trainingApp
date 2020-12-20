@@ -1,15 +1,13 @@
-import React, { Fragment, useState }  from "react";
-import { Button, Card, Col, Container, Fade, Modal, ProgressBar, Row } from "react-bootstrap";
-import { Switch, Link, Route, useRouteMatch, Redirect, useParams, Prompt } from 'react-router-dom';
+import React  from "react";
+import { Switch, Route, useRouteMatch, Redirect, Prompt } from 'react-router-dom';
 import data from '../data/dataSceance'
 import Header from "./global/header";
-import Refocus from "./global/refocus";
 import PlanExercise from "./PlanExercise";
 
 const PlanActive = () => {
     let { path } = useRouteMatch(); // returns baseUrl
 
-    const promptMessage = (location, action) => {
+    const promptMessage = (location) => {
         if (location.pathname.startsWith("/active")) {
             return true;
         } else {

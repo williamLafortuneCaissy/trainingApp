@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+// eslint-disable-next-line
 import { Button, Card, Col, Container, Modal, ProgressBar, Row } from 'react-bootstrap';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import Header from './global/header';
 import data from '../data/dataSceance'
+import Timer from './global/timer';
 
 
 const PlanExercise = (props) => {
@@ -14,42 +15,7 @@ const PlanExercise = (props) => {
     const progress = setId / (nbSets-1) * 100;
     const set = data.sets[setId];
 
-
-    const style = {
-        modalBody: {
-            minHeight: '50vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        }
-    }
-    let hello = 30;
-
-    // const [timerModal, setTimerModal] = useState(false);
-    // const toggleTimerModal = () => {
-    //     startTimer();
-    //     // setTimerModal(!timerModal);
-    // }
-    // <Modal centered show={timerModal} onHide={toggleTimerModal} className="text-primary">
-    //     <Modal.Body style={style.modalBody}>
-    //     </Modal.Body>
-    // </Modal>
-
-    const [timer, setTimer] = useState(30);
     const [done, setDone] = useState(true); // sets to true to enable the "next exercise" btn
-
-    let startTimer = (time) => {
-        hello = time;
-        let timerInterval = setInterval(() => {
-            if (hello < 1) {
-                clearInterval(timerInterval);
-            } else {
-                hello = hello - 1;
-                console.log(hello);
-            }
-
-        }, 1000);
-    }
 
     const getNextBtn = () => {
         if (done) {
@@ -96,7 +62,7 @@ const PlanExercise = (props) => {
                             </div>
                             {exercise.time &&
                                 <div className="mb-4">
-                                    <Button variant="primary" size="lg" onClick={() => startTimer(exercise.time)}>Start Timer</Button>
+                                    <Timer startTime={Date.now()} timer={10} />
                                     {/* <div className="display-1 text-center">{timer}</div> */}
                                 </div>
                             }

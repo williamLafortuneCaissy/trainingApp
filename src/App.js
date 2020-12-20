@@ -3,7 +3,6 @@ import './assets/scss/style.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PlanView from './components/PlanView';
 import PlanActive from './components/PlanActive';
-import PlanExercise from './components/PlanExercise';
 
 function App() {
     return (

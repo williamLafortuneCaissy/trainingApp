@@ -18,17 +18,17 @@ const PlanView = () => {
                                 {key > 0 && <hr/>}
 
                                 <div className="d-flex justify-content-between">
-                                    <div className="h5">{exercise.title}</div>
+                                    <div className="h4">{exercise.title}</div>
                                     {(key === 0 && set.series) &&
                                         <div>
-                                            <span className="text-muted small">Series : </span>
+                                            <span className="font-weight-bold small">Series : </span>
                                             <span>{set.series}x</span>
                                         </div>
                                     }
                                 </div>
                                 <div className="mb-2">
 
-                                    <span className="text-muted small">Rep : </span>
+                                    <span className="font-weight-bold small">Rep : </span>
                                     <span>
                                         {exercise.time && `${exercise.time}s`}
                                         {(exercise.rep && exercise.time) && <span className="mx-2">-</span>}
