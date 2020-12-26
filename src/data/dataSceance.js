@@ -6,6 +6,7 @@ const data = {
             "exercises": [
                 {
                     "title": "Head Spin Clock",
+                    "description": null,
                     "time": null,
                     "rep": 3,
                 },
@@ -16,6 +17,7 @@ const data = {
             "exercises": [
                 {
                     "title": "Head Spin Anti-Clock",
+                    "description": null,
                     "time": null,
                     "rep": 3,
                 },
@@ -25,19 +27,21 @@ const data = {
             "series": null,
             "exercises": [
                 {
-                    "title": "Head to shoulders (Both sides)",
+                    "title": "Head to shoulders",
+                    "description": "20s per sides",
                     "time": 20,
-                    "rep": 2,
+                    "rep": null,
                 },
             ],
         },
         {
-            "series": null,
+            "series": 2,
             "exercises": [
                 {
                     "title": "Foward fold",
+                    "description": null,
                     "time": 15,
-                    "rep": 2,
+                    "rep": null,
                 },
             ],
         },
@@ -46,11 +50,13 @@ const data = {
             "exercises": [
                 {
                     "title": "Child's Pose",
+                    "description": null,
                     "time": 10,
                     "rep": null,
                 },
                 {
                     "title": "Cobra Pose",
+                    "description": null,
                     "time": 10,
                     "rep": null,
                 },
@@ -61,11 +67,13 @@ const data = {
             "exercises": [
                 {
                     "title": "Down-Dog",
+                    "description": null,
                     "time": 20,
                     "rep": null,
                 },
                 {
                     "title": "Pidgeon pose",
+                    "description": null,
                     "time": 20,
                     "rep": null,
                 },
@@ -76,6 +84,7 @@ const data = {
             "exercises": [
                 {
                     "title": "Full Body Stretch",
+                    "description": null,
                     "time": 10,
                     "rep": null,
                 },
@@ -86,6 +95,7 @@ const data = {
             "exercises": [
                 {
                     "title": "Back twist",
+                    "description": null,
                     "time": 10,
                     "rep": null,
                 },
@@ -96,6 +106,7 @@ const data = {
             "exercises": [
                 {
                     "title": "Big hug - Rounded back",
+                    "description": null,
                     "time": 10,
                     "rep": null,
                 },
@@ -106,6 +117,7 @@ const data = {
             "exercises": [
                 {
                     "title": "Butterfly",
+                    "description": null,
                     "time": 20,
                     "rep": null,
                 },
@@ -116,6 +128,7 @@ const data = {
             "exercises": [
                 {
                     "title": "1 legged fowad Fold",
+                    "description": null,
                     "time": 20,
                     "rep": null,
                 },
@@ -126,6 +139,7 @@ const data = {
             "exercises": [
                 {
                     "title": "Wide-angle Foward Fold",
+                    "description": null,
                     "time": 20,
                     "rep": null,
                 },

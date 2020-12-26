@@ -10,9 +10,6 @@ $dark: #001726;
 
 $body-color: $primary;
 $text-muted: $tertiary;
-$card-bg: $light;
-$btn-white-space: nowrap;
-$input-btn-padding-x-lg: 2rem;
 
 $font-family-base: 'Quicksand', sans-serif;
 $font-weight-light: 400;
@@ -21,20 +18,29 @@ $font-weight-bold: 700;
 $headings-font-weight: $font-weight-bold;
 $enable-shadows: true;
 
+$border-radius-sm: .25rem;
 $border-radius: .5rem;
+$border-radius-lg: 1rem;
+
+$card-bg: $light;
+$card-border-radius: $border-radius-lg;
+
 $btn-border-radius-sm: 100px;
 $btn-border-radius: 100px;
 $btn-border-radius-lg: 100px;
-$modal-dialog-margin: 15px;
+$btn-white-space: nowrap;
+$input-btn-padding-x-lg: 2rem;
 
+$modal-dialog-margin: 15px;
 // $enable-gradients: true;
 
 
 @import "bootstrap/scss/bootstrap";
+@import "mixin/reboot";
 @import "components/header";
+@import "components/planExercise";
 @import "components/timer";
 @import "custom/buttons";
-
 
 
 .container-mobile {
@@ -47,11 +53,29 @@ body {
     min-height: 100vh;
 }
 
+i, i+* {
+    vertical-align: middle;
+}
+
+// helpers
+.sticky-bottom {
+    @supports (position: sticky) {
+        position: sticky;
+        bottom: 0;
+        z-index: $zindex-sticky;
+    }
+}
+.lh-1 {
+    line-height: 1 !important
+}
+
+
+// components
 .card {
     color: $body-color;
 }
 
-i, i+* {
-    vertical-align: middle;
+.btn-light {
+    color: $primary
 }
 

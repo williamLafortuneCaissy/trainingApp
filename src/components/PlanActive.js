@@ -17,7 +17,7 @@ const PlanActive = () => {
 
     return (
         <>
-            <div className="vh-100 d-flex flex-column">
+            <div className="min-vh-100 d-flex flex-column">
                 {/* <Prompt when={true} message={'Are you sure you want to leave?'} /> */}
                 <Prompt when={true} message={promptMessage}/>
                 <Header title={data.title} backHref={'/'} />

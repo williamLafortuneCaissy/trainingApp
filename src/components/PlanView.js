@@ -26,8 +26,10 @@ const PlanView = () => {
                                         </div>
                                     }
                                 </div>
+                                {exercise.description &&
+                                    <p className="mb-1">{exercise.description}</p>
+                                }
                                 <div className="mb-2">
-
                                     <span className="font-weight-bold small">Rep : </span>
                                     <span>
                                         {exercise.time && `${exercise.time}s`}

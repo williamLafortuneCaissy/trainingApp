@@ -2,9 +2,11 @@
 .timer {
     .modal{
         &-content {
-            height: calc(100vw - 30px);
-            width: calc(100vw - 30px);
-            border-radius: 50%;
+            height: calc(75vw);
+            width: calc(75vw);
+            margin: auto;
+            // border-radius: 50%;
+            border-radius: $border-radius-lg;
         }
 
         &-body {

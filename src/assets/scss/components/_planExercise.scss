@@ -1,0 +1,22 @@
+
+
+.series-btn {
+    @include reboot-button();
+
+    border-radius: $border-radius;
+    background-color: $light;
+    color: $primary;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 4rem;
+    margin-left: map-get($spacers, 3) / 2;
+    margin-right: map-get($spacers, 3) / 2;
+
+
+    &.done {
+        background-color: $secondary;
+        color: $light;
+    }
+}
