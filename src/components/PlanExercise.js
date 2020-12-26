@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 // eslint-disable-next-line
 import { Button, Card, Col, Container, Modal, ProgressBar, Row } from 'react-bootstrap';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
@@ -7,71 +7,122 @@ import Timer from './global/timer';
 
 
 const PlanExercise = (props) => {
+    // url variables
     let { setId } = useParams(); //get url id base on parent :setId
     setId = Number(setId);
     const { path } = useRouteMatch('/active'); //path = baseUrl that matches until /active
 
+    // data vars
+    const set = data.sets[setId];
     const nbSets = data.sets.length;
     const progress = setId / (nbSets-1) * 100;
-    const set = data.sets[setId];
 
-    const [done, setDone] = useState(true); // sets to true to enable the "next exercise" btn
+    const [seriesDone, setSeriesDone] = useState(0);
 
     const getNextBtn = () => {
-        if (done) {
-            if (setId < nbSets-1) {
-                return (
-                    <Link to={`${path}/${setId+1}`} className="btn btn-secondary btn-block">
-                        <span>Next</span>
-                        <i className="mdi mdi-arrow-right"></i>
-                    </Link>
-                );
+        let btn = null;
+
+        // const currentStatus = null
+        if (seriesDone < set.series) {
+            btn =
+                <Button variant="secondary" block onClick={() => setSeriesDone(seriesDone+1)}>Check</Button>
+        } else if (setId < nbSets-1) {
+            btn =
+                <Link to={`${path}/${setId+1}`} className="btn btn-secondary btn-block">
+                    <span>Next</span>
+                    <i className="mdi mdi-arrow-right lh-1"></i>
+                </Link>
+        } else if (setId === nbSets-1) {
+            btn =
+                <Link to={`/`} className="btn btn-secondary btn-block">
+                    <span>Done !</span>
+                </Link>
+        } else {
+            console.error("Could not get PlanExercise's next btn", setId, nbSets);
+        }
+
+        return btn;
+
+    }
+
+    const getSeriesBtns = () => {
+
+        // function that sets the right serie based on the clicked btn
+        const toggleSeriesDone = (serieId) => {
+            if (seriesDone === serieId+1) {
+                // if clicked on the last active btn, it toggles it
+                setSeriesDone(serieId)
             } else {
-                return(
-                    <Link to={`/`} className="btn btn-secondary btn-block">
-                        <span>Done !</span>
-                    </Link>
-                );
+                // else make the clicked btn active
+                setSeriesDone(serieId+1)
             }
         }
 
+        let el = [];
+        for (let i = 0; i < set.series; i++) {
+
+            // doneClass = 'done' on all btns before seriesDone number
+            const doneClass = i < seriesDone ? 'done' : '';
+
+            el.push(
+                <button
+                    key={`Serie${i}`}
+                    onClick={() => toggleSeriesDone(i)}
+                    className={`series-btn ${doneClass}`}>
+                    x
+                </button>
+            )
+        }
+        return el;
     }
 
     return (
         <>
-            <main className="flex-grow-1 overflow-auto pt-3">
-                <Container>
-                    {set.exercises.map((exercise, key) => (
-                        <Card body key={key} className="text-center mb-3">
-                            <div className="h2">{exercise.title}</div>
-                            <div className="d-flex justify-content-around">
-                                {exercise.time &&
-                                    <>
-                                        <div className="mb-4">
-                                            <div className="display-1">{exercise.time}</div>
-                                            <div className="h3">Seconds</div>
-                                        </div>
-                                    </>
-                                }
-                                {exercise.rep &&
-                                    <div className="mb-4">
-                                        <div className="display-1">{exercise.rep}</div>
-                                        <div className="h3">Times</div>
-                                    </div>
-                                }
-                            </div>
+            <main className="flex-grow-1 pt-3 container d-flex flex-column">
+                {set.exercises.map((exercise, key) => (
+                    <Card body key={key} className="text-center mb-3">
+                        <div className="h2">{exercise.title}</div>
+                        {exercise.description &&
+                            <p className="mb-1">( {exercise.description} )</p>
+                        }
+                        <div className="d-flex justify-content-around">
                             {exercise.time &&
+                                <>
+                                    <div className="mb-4">
+                                        <div className="display-1">{exercise.time}</div>
+                                        <div className="h3">Seconds</div>
+                                    </div>
+                                </>
+                            }
+                            {exercise.rep &&
                                 <div className="mb-4">
-                                    <Timer time={exercise.time} />
-                                    {/* <div className="display-1 text-center">{timer}</div> */}
+                                    <div className="display-1">{exercise.rep}</div>
+                                    <div className="h3">Times</div>
                                 </div>
                             }
-                            {getNextBtn()}
-                        </Card>
-                    ))}
-                </Container>
+                        </div>
+                        {exercise.time &&
+                            <div className="mb-4">
+                                <Timer time={exercise.time} />
+                                {/* <div className="display-1 text-center">{timer}</div> */}
+                            </div>
+                        }
+                    </Card>
+                ))}
+                <div className="mt-auto mb-3">
+                    {set.series &&
+                        <Fragment>
+                            <div className="text-center mb-3">
+                                <div className="text-light mb-3 lh-1">Series</div>
+                                {getSeriesBtns()}
+                            </div>
+                        </Fragment>
+                    }
+
+                    {getNextBtn()}
+                </div>
             </main>
-            <footer className="bg-white text-primary border-top">
+            <footer className="bg-white text-primary border-top sticky-bottom">
                 <div className="px-3 pt-3">
                     <ProgressBar now={progress} />
                 </div>
