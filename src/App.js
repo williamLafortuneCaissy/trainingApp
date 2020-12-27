@@ -1,8 +1,8 @@
 import './assets/scss/style.scss';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import PlanView from './components/PlanView';
-import PlanActive from './components/PlanActive';
+import Plan from './components/Plan';
+import ExerciseSwitcher from './components/exercise/ExerciseSwitcher';
 
 function App() {
     return (
@@ -10,10 +10,10 @@ function App() {
             <Router>
                 <Switch>
                     <Route path={'/'} exact>
-                        <PlanView />
+                        <Plan />
                     </Route>
                     <Route path={'/active'}>
-                        <PlanActive />
+                        <ExerciseSwitcher />
                     </Route>
                 </Switch>
             </Router>

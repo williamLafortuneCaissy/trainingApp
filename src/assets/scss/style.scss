@@ -1,61 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
 
-// https://color.adobe.com/Monii%20App-color-theme-14664852
-$primary: #126873;
-$secondary: #17C29B;
-$tertiary: #0B877E;
-$light: lighten(#89FAD4, 20%);
-$dark: #001726;
-
-$body-color: $primary;
-$text-muted: $tertiary;
-
-$font-family-base: 'Quicksand', sans-serif;
-$font-weight-light: 400;
-$font-weight-normal: 500;
-$font-weight-bold: 700;
-$headings-font-weight: $font-weight-bold;
-$enable-shadows: true;
-
-$border-radius-sm: .25rem;
-$border-radius: .5rem;
-$border-radius-lg: 1rem;
-
-$card-bg: $light;
-$card-border-radius: $border-radius-lg;
-
-$btn-border-radius-sm: 100px;
-$btn-border-radius: 100px;
-$btn-border-radius-lg: 100px;
-$btn-white-space: nowrap;
-$input-btn-padding-x-lg: 2rem;
-
-$modal-dialog-margin: 15px;
-// $enable-gradients: true;
-
-
+@import "variables";
 @import "bootstrap/scss/bootstrap";
 @import "mixin/reboot";
+
+@import "custom/global";
+@import "custom/buttons";
+
 @import "components/header";
 @import "components/planExercise";
 @import "components/timer";
-@import "custom/buttons";
 
-
-.container-mobile {
-    max-width: 768px;
-}
-
-body {
-    background: linear-gradient(135deg, $tertiary, $primary);
-    color: $white;
-    min-height: 100vh;
-}
-
-i, i+* {
-    vertical-align: middle;
-}
 
 // helpers
 .sticky-bottom {
@@ -75,7 +31,6 @@ i, i+* {
     color: $body-color;
 }
 
-.btn-light {
-    color: $primary
-}
+
+
 

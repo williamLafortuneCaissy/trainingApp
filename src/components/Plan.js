@@ -1,9 +1,9 @@
 import React, { Fragment }  from "react";
 import { Card, Container } from "react-bootstrap";
 import data from '../data/dataSceance'
-import Header from "./global/header";
+import Header from "./_global/header";
 
-const PlanView = () => {
+const Plan = () => {
 
     return (
         <>
@@ -47,4 +47,4 @@ const PlanView = () => {
     )
 }
 
-export default PlanView;
+export default Plan;

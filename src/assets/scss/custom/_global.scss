@@ -1,0 +1,36 @@
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    &-main {
+        flex-grow: 1;
+        padding-top: map-get($spacers, 3);
+    }
+
+    &-header {
+        position: sticky;
+        top: 0;
+        z-index: $zindex-sticky;
+    }
+
+    &-footer {
+        position: sticky;
+        bottom: 0;
+        z-index: $zindex-sticky;
+    }
+}
+
+.container-mobile {
+    max-width: 768px;
+}
+
+body {
+    background: linear-gradient(135deg, $tertiary, $primary);
+    color: $white;
+    min-height: 100vh;
+}
+
+i, i+* {
+    vertical-align: middle;
+}

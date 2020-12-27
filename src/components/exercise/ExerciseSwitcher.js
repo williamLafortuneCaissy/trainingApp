@@ -1,11 +1,12 @@
-import React  from "react";
+import React, { useRef }  from "react";
 import { Switch, Route, useRouteMatch, Redirect, Prompt } from 'react-router-dom';
-import data from '../data/dataSceance'
-import Header from "./global/header";
-import PlanExercise from "./PlanExercise";
+import data from '../../data/dataSceance'
+import Header from "../_global/header";
+import Exercise from "./Exercise";
 
-const PlanActive = () => {
+const ExerciseSwitcher = () => {
     let { path } = useRouteMatch(); // returns baseUrl
+    const layoutRef = useRef(null); // used to resetFocus on exercise switch
 
     const promptMessage = (location) => {
         if (location.pathname.startsWith("/active")) {
@@ -15,10 +16,13 @@ const PlanActive = () => {
         }
     }
 
+    const resetFocus = () => {
+        layoutRef.current.focus();
+    }
+
     return (
         <>
-            <div className="min-vh-100 d-flex flex-column">
-                {/* <Prompt when={true} message={'Are you sure you want to leave?'} /> */}
+            <div ref={layoutRef} className="layout" tabIndex="-1">
                 <Prompt when={true} message={promptMessage}/>
                 <Header title={data.title} backHref={'/'} />
                 <Switch>
@@ -27,13 +31,12 @@ const PlanActive = () => {
                         <Redirect to={`${path}/0`} />
                     </Route>
                     <Route path={`${path}/:setId`} exact>
-                        <PlanExercise />
+                        <Exercise layoutRef={layoutRef} resetFocus={resetFocus}/>
                     </Route>
                 </Switch>
-
             </div>
         </>
     )
 }
 
-export default PlanActive;
+export default ExerciseSwitcher;

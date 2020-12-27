@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Header = (props) => {
     return (
-        <header className="header sticky-top">
+        <header className="header layout-header">
             <div className="header-left">
                 {props.backHref &&
                     <Link className="header-btn" to={props.backHref}>

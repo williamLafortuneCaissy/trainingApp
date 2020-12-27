@@ -27,12 +27,14 @@
         border-radius: $btn-border-radius;
     }
 
-
     &:hover {
-
         &:before {
             opacity: 1;
         }
     }
 
+}
+
+.btn-light {
+    color: $primary
 }

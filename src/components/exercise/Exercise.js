@@ -1,12 +1,13 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 // eslint-disable-next-line
 import { Button, Card, Col, Container, Modal, ProgressBar, Row } from 'react-bootstrap';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import data from '../data/dataSceance'
-import Timer from './global/timer';
+import data from '../../data/dataSceance'
+import Timer from '../_global/timer';
 
 
-const PlanExercise = (props) => {
+
+const Exercise = (props) => {
     // url variables
     let { setId } = useParams(); //get url id base on parent :setId
     setId = Number(setId);
@@ -18,6 +19,11 @@ const PlanExercise = (props) => {
     const progress = setId / (nbSets-1) * 100;
 
     const [seriesDone, setSeriesDone] = useState(0);
+
+    useEffect(() => {
+        console.log('reset Focus');
+        props.resetFocus();
+    });
 
     const getNextBtn = () => {
         let btn = null;
@@ -78,7 +84,7 @@ const PlanExercise = (props) => {
 
     return (
         <>
-            <main className="flex-grow-1 pt-3 container d-flex flex-column">
+            <main className="layout-main container d-flex flex-column">
                 {set.exercises.map((exercise, key) => (
                     <Card body key={key} className="text-center mb-3">
                         <div className="h2">{exercise.title}</div>
@@ -122,7 +128,7 @@ const PlanExercise = (props) => {
                     {getNextBtn()}
                 </div>
             </main>
-            <footer className="bg-white text-primary border-top sticky-bottom">
+            <footer className="layout-footer bg-white text-primary border-top">
                 <div className="px-3 pt-3">
                     <ProgressBar now={progress} />
                 </div>
@@ -149,4 +155,4 @@ const PlanExercise = (props) => {
     );
 }
 
-export default PlanExercise;
+export default Exercise;
