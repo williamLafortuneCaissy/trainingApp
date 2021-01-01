@@ -150,3 +150,15 @@ const data = {
 }
 
 export default data;
+
+/*
+Routes
+GET https://mockend.com/williamLafortuneCaissy/trainingApp/plans
+GET https://mockend.com/williamLafortuneCaissy/trainingApp/plans/<id>
+GET https://mockend.com/williamLafortuneCaissy/trainingApp/sets
+GET https://mockend.com/williamLafortuneCaissy/trainingApp/sets/<id>
+GET https://mockend.com/williamLafortuneCaissy/trainingApp/exercises
+GET https://mockend.com/williamLafortuneCaissy/trainingApp/exercises/<id>
+https://mockend.com/williamLafortuneCaissy/trainingApp/graphql
+
+*/
