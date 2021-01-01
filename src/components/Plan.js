@@ -1,31 +1,15 @@
-import axios from "axios";
-import React, { Fragment, useEffect }  from "react";
+import React, { Fragment }  from "react";
 import { Card, Container } from "react-bootstrap";
-import fakeData from '../data/dataSceance'
+import data from '../data/dataSceance'
 import Header from "./_global/header";
 
 const Plan = () => {
-    const fetchData = async () => {
-        // axios returns a promise so we need to await to recieve the data instead of the promise
-        // to use await, we need to run the function async
-        const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
-        // console.log(res);
-
-        // status 200 means everything went right
-        if (res.status === 200) {
-            const data = res.data;
-        }
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, [])
 
     return (
         <>
             <Header title={fakeData.title} next={'Start'} nextHref={'/exercise'} />
             <Container>
-                {fakeData.sets.map((set, setKey) => (
+                {data.sets.map((set, setKey) => (
                     <Card body key={setKey++} className="mb-3">
 
                         {/* added a second loop because of supersets */}
