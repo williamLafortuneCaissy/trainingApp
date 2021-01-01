@@ -6,12 +6,11 @@ import data from '../../data/dataSceance'
 import Timer from '../_global/timer';
 
 
-
 const Exercise = (props) => {
     // url variables
     let { setId } = useParams(); //get url id base on parent :setId
     setId = Number(setId);
-    const { path } = useRouteMatch('/active'); //path = baseUrl that matches until /active
+    const { path } = useRouteMatch('/exercise'); //path = baseUrl that matches until /active
 
     // data vars
     const set = data.sets[setId];

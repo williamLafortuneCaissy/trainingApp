@@ -9,7 +9,7 @@ const ExerciseSwitcher = () => {
     const layoutRef = useRef(null); // used to resetFocus on exercise switch
 
     const promptMessage = (location) => {
-        if (location.pathname.startsWith("/active")) {
+        if (location.pathname.startsWith("/exercise")) {
             return true;
         } else {
             return 'Are you sure you want to go to leave?';

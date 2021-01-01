@@ -7,7 +7,7 @@ const Plan = () => {
 
     return (
         <>
-            <Header title={data.title} next={'Start'} nextHref={'/active'} />
+            <Header title={fakeData.title} next={'Start'} nextHref={'/exercise'} />
             <Container>
                 {data.sets.map((set, setKey) => (
                     <Card body key={setKey++} className="mb-3">

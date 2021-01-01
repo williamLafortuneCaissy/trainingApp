@@ -9,11 +9,11 @@ function App() {
         <div className="App">
             <Router>
                 <Switch>
-                    <Route path={'/'} exact>
-                        <Plan />
-                    </Route>
-                    <Route path={'/active'}>
+                    <Route path={'/exercise'}>
                         <ExerciseSwitcher />
+                    </Route>
+                    <Route path={'/'}>
+                        <Plan />
                     </Route>
                 </Switch>
             </Router>
