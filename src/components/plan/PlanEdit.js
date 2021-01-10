@@ -12,16 +12,20 @@ const PlanEdit = (props) => {
 
 	// Array containing nb of sets inside each super sets
 	// ex: [1, 2, 1] => 1x1 set, 1x2 superset, 1x1 set
-	const [superSetArray, setSuperSetArray] = useState([]);
+	const [data, setData] = useState([]);
 
-	const addSuperset = () => setSuperSetArray((superSetArray) => [...superSetArray, 1])
+	const addSuperset = () => {
+		console.log(data.length);
+		setData((data) => [...data, 1])
+	}
 
 	const updateSuperset = (supersetId, value) => {
-		let newArr = [...superSetArray];
-		newArr[supersetId] = newArr[supersetId] + value;
+		let newArr = [...data];
+		newArr[supersetId] = newArr[supersetId] + value; // add || remove set from superset
+		newArr = newArr.filter(superSet => superSet != 0); // removes superset with no set [0]
 
-		setSuperSetArray(newArr);
-		console.log(newArr);
+		setData(newArr);
+
 	}
 
 	const getSets = (nbSets, superSetId) => {
@@ -46,7 +50,7 @@ const PlanEdit = (props) => {
 						<Form.Label>Main Title</Form.Label>
 						<Form.Control type="text" placeholder="ex: My First Plan!"/>
 					</Form.Group>
-					{superSetArray.map((superSetValue, superSetId) => (
+					{data.map((superSetValue, superSetId) => (
 						<div className="superSet" key={'superset-' + superSetId}>
 							{getSets(superSetValue, superSetId)}
 							<div className="text-center mt-n3 mb-n2">
