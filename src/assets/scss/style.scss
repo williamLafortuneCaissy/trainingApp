@@ -2,11 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
 
 @import "variables";
-@import "bootstrap/scss/bootstrap";
+@import "bootstrap";
 @import "mixin/reboot";
 
 @import "custom/global";
 @import "custom/buttons";
+@import "custom/forms";
 
 @import "components/header";
 @import "components/planExercise";
@@ -23,6 +24,9 @@
 }
 .lh-1 {
     line-height: 1 !important
+}
+.reboot-button {
+    @include reboot-button()
 }
 
 

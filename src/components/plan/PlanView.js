@@ -1,13 +1,13 @@
 import React, { Fragment }  from "react";
 import { Card, Container } from "react-bootstrap";
-import data from '../data/dataSceance'
-import Header from "./_global/header";
+import data from '../../data/dataSceance'
+import Header from "../_global/header";
 
-const Plan = () => {
+const PlanView = () => {
 
     return (
         <>
-            <Header title={data.title} next={'Start'} nextHref={'/exercise'} />
+            <Header title={data.title} next={'Start'} nextHref={'/exercise'} backHref="/"/>
             <Container>
                 {data.sets.map((set, setKey) => (
                     <Card body key={setKey++} className="mb-3">
@@ -47,4 +47,4 @@ const Plan = () => {
     )
 }
 
-export default Plan;
+export default PlanView;

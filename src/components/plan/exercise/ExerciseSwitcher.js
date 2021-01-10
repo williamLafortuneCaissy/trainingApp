@@ -1,7 +1,7 @@
 import React, { useRef }  from "react";
 import { Switch, Route, useRouteMatch, Redirect, Prompt } from 'react-router-dom';
-import data from '../../data/dataSceance'
-import Header from "../_global/header";
+import data from '../../../data/dataSceance'
+import Header from "../../_global/header";
 import Exercise from "./Exercise";
 
 const ExerciseSwitcher = () => {

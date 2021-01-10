@@ -2,8 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 // eslint-disable-next-line
 import { Button, Card, Col, Container, Modal, ProgressBar, Row } from 'react-bootstrap';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import data from '../../data/dataSceance'
-import Timer from '../_global/timer';
+import data from '../../../data/dataSceance'
+import Timer from '../../_global/timer';
 
 
 const Exercise = (props) => {
@@ -33,7 +33,7 @@ const Exercise = (props) => {
                 <Button variant="secondary" block onClick={() => setSeriesDone(seriesDone+1)}>Check</Button>
         } else if (setId < nbSets-1) {
             btn =
-                <Link to={`${path}/${setId+1}`} className="btn btn-secondary btn-block">
+                <Link to={`${path}/${setId+1}`} onClick={() => setSeriesDone(0)} className="btn btn-secondary btn-block">
                     <span>Next</span>
                     <i className="mdi mdi-arrow-right lh-1"></i>
                 </Link>
