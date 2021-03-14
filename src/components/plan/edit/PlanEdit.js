@@ -5,9 +5,11 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import Header from '../../_global/header';
 import SetEdit from './SetEdit';
 
-
-
+// ===============================================================
+// this maganes the add / remove / list Sets, as well as the title
+// ===============================================================
 const PlanEdit = (props) => {
+
 	const [title, setTitle] = useState(null);
 
 	// Array containing nb of sets inside each super sets
@@ -15,7 +17,6 @@ const PlanEdit = (props) => {
 	const [data, setData] = useState([]);
 
 	const addSuperset = () => {
-		console.log(data.length);
 		setData((data) => [...data, 1])
 	}
 
@@ -50,13 +51,8 @@ const PlanEdit = (props) => {
 						<Form.Label>Main Title</Form.Label>
 						<Form.Control type="text" placeholder="ex: My First Plan!"/>
 					</Form.Group>
-					{data.map((superSetValue, superSetId) => (
-						<div className="superSet" key={'superset-' + superSetId}>
-							{getSets(superSetValue, superSetId)}
-							<div className="text-center mt-n3 mb-n2">
-								<button type="button" className="py-2 px-3 reboot-button" onClick={() => updateSuperset(superSetId, 1)}><FontAwesomeIcon icon={faPlus} /></button>
-							</div>
-						</div>
+					{data.map((set, setKey) => (
+						<SetEdit key={setKey}/>
 					))}
 
 					<div className="text-center">
