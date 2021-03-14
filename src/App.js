@@ -1,9 +1,10 @@
 import './assets/scss/style.scss';
 
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import PlanView from './components/plan/PlanView';
-import ExerciseSwitcher from './components/plan/exercise/ExerciseSwitcher';
-import PlanEdit from './components/plan/PlanEdit';
+import PlanSummary from './components/plan/view/PlanSummary';
+import Plan from './components/plan/view/Plan';
+import PlanEdit from './components/plan/edit/PlanEdit';
+
 
 function App() {
     return (
@@ -11,13 +12,13 @@ function App() {
             <Router>
                 <Switch>
                     <Route path={'/exercise'}>
-                        <ExerciseSwitcher />
+                        <Plan />
                     </Route>
                     <Route path={'/create'}>
                         <PlanEdit />
                     </Route>
                     <Route path={'/plan'}>
-                        <PlanView />
+                        <PlanSummary />
                     </Route>
                     <Route path={'/'}>
                         <Link to={"/create"} className="btn btn-primary">Create</Link>

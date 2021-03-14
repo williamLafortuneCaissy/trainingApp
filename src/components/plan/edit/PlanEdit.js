@@ -2,7 +2,7 @@ import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
-import Header from '../_global/header';
+import Header from '../../_global/header';
 import SetEdit from './SetEdit';
 
 

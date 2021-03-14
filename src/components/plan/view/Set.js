@@ -6,7 +6,7 @@ import data from '../../../data/dataSceance'
 import Timer from '../../_global/timer';
 
 
-const Exercise = (props) => {
+const Set = (props) => {
     // url variables
     let { setId } = useParams(); //get url id base on parent :setId
     setId = Number(setId);
@@ -136,14 +136,14 @@ const Exercise = (props) => {
                         {setId > 0 &&
                             <Link to={`${path}/${setId - 1}`} className="text-reset p-3 d-flex align-items-center">
                                 <i className="mdi mdi-chevron-left"></i>
-                                <span>Previous Exercise</span>
+                                <span>Previous Set</span>
                             </Link>
                         }
                     </Col>
                     <Col xs={{size:5, offset:2}}>
                         {setId < nbSets-1 &&
                             <Link to={`${path}/${setId + 1}`} className="text-reset p-3 d-flex align-items-center justify-content-end">
-                                <span>Next Exercise</span>
+                                <span>Next Set</span>
                                 <i className="mdi mdi-chevron-right"></i>
                             </Link>
                         }
@@ -154,4 +154,4 @@ const Exercise = (props) => {
     );
 }
 
-export default Exercise;
+export default Set;

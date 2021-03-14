@@ -2,9 +2,12 @@ import React, { useRef }  from "react";
 import { Switch, Route, useRouteMatch, Redirect, Prompt } from 'react-router-dom';
 import data from '../../../data/dataSceance'
 import Header from "../../_global/header";
-import Exercise from "./Exercise";
+import Set from "./Set";
 
-const ExerciseSwitcher = () => {
+// ===========================================================
+// This Magages which set to be displayed based on the url
+// ===========================================================
+const Plan = () => {
     let { path } = useRouteMatch(); // returns baseUrl
     const layoutRef = useRef(null); // used to resetFocus on exercise switch
 
@@ -31,7 +34,7 @@ const ExerciseSwitcher = () => {
                         <Redirect to={`${path}/0`} />
                     </Route>
                     <Route path={`${path}/:setId`} exact>
-                        <Exercise layoutRef={layoutRef} resetFocus={resetFocus}/>
+                        <Set layoutRef={layoutRef} resetFocus={resetFocus}/>
                     </Route>
                 </Switch>
             </div>
@@ -39,4 +42,4 @@ const ExerciseSwitcher = () => {
     )
 }
 
-export default ExerciseSwitcher;
+export default Plan;
