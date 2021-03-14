@@ -6,41 +6,25 @@ import Header from '../../_global/header';
 import SetEdit from './SetEdit';
 
 // ===============================================================
-// this maganes the add / remove / list Sets, as well as the title
+// this manages the add / remove / list Sets, as well as the title
 // ===============================================================
-const PlanEdit = (props) => {
+const PlanEdit = () => {
 
-	const [title, setTitle] = useState(null);
+	const [sets, setSets] = useState([])
 
-	// Array containing nb of sets inside each super sets
-	// ex: [1, 2, 1] => 1x1 set, 1x2 superset, 1x1 set
-	const [data, setData] = useState([]);
+    // this simulates the next set id
+    const [idCounter, setIdCounter] = useState(0);
 
-	const addSuperset = () => {
-		setData((data) => [...data, 1])
-	}
+	// set.push(idCounter); idCounter++;
+    const addSet = () => {
+        setIdCounter(idCounter+1);
+        setSets((prevSets) => [...prevSets, idCounter])
+    }
 
-	const updateSuperset = (supersetId, value) => {
-		let newArr = [...data];
-		newArr[supersetId] = newArr[supersetId] + value; // add || remove set from superset
-		newArr = newArr.filter(superSet => superSet != 0); // removes superset with no set [0]
-
-		setData(newArr);
-
-	}
-
-	const getSets = (nbSets, superSetId) => {
-		let sets = [];
-		for (let i = 0; i < nbSets; i++) {
-			sets.push(
-				<SetEdit key={'set-'+i}
-					updateSuperset={updateSuperset}
-					superSetId={superSetId}
-				/>
-			)
-		}
-		return sets;
-	}
+    const deleteSet = (id) => {
+        // exercises.filter will return all exercises except the id specified
+        setSets(sets.filter(set => set !== id))
+    }
 
 	return (
 		<div className="layout">
@@ -51,12 +35,12 @@ const PlanEdit = (props) => {
 						<Form.Label>Main Title</Form.Label>
 						<Form.Control type="text" placeholder="ex: My First Plan!"/>
 					</Form.Group>
-					{data.map((set, setKey) => (
-						<SetEdit key={setKey}/>
+					{sets.map((id) => (
+						<SetEdit key={id} deleteSet={() => deleteSet(id)}/>
 					))}
 
 					<div className="text-center">
-						<Button variant="light" onClick={addSuperset}>
+						<Button variant="light" onClick={addSet}>
 							<FontAwesomeIcon icon={faPlus} />
 						</Button>
 					</div>

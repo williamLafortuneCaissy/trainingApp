@@ -4,30 +4,31 @@ import { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import ExerciseEdit from './ExerciseEdit';
 // =======================================================
-// this maganes the add / remove / list exercice
+// this manages the add / remove / list exercice
 // =======================================================
-const SetEdit = (props) => {
+// @param {func} deleteSet deletes this set
+const SetEdit = ({deleteSet}) => {
 
-    const [name, setName] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [setNb, setSetNb] = useState(null);
-    const [setType, setSetType] = useState(null);
-    const [weight, setWeight] = useState(null);
-
-    const [series, setSeries] = useState(0)
     const [exercises, setExercises] = useState([])
 
     // this simulates the next exercise id
     const [idCounter, setIdCounter] = useState(0);
 
+    // used to add an exercise at the start
+    const [init, setInit] = useState(true)
 
-    // initialise empty set
+
+    // initialise empty set && remove the set if it contains no exercises
     useEffect(() => {
         if (!exercises.length) {
-            addExercise()
+            if (init) {
+                addExercise()
+                setInit(false)
+            } else {
+                deleteSet()
+            }
         }
-    }, [])
-
+    }, [exercises])
 
     // set.push(idCounter); idCounter++;
     const addExercise = () => {
@@ -36,12 +37,8 @@ const SetEdit = (props) => {
     }
 
     const deleteExercise = (id) => {
-        console.log('delete: ', id)
         // exercises.filter will return all exercises except the id specified
-        console.log('old exercises: ', exercises)
         setExercises(exercises.filter(exercise => exercise !== id))
-        console.log('new exercises: ', exercises)
-        console.log(exercises)
     }
 
     return (

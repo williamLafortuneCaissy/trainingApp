@@ -5,7 +5,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 // ==============================================
 // this manages the form
 // ==============================================
-// @param {func} deleteExercise deleted this exercise
+// @param {func} deleteExercise deletes this exercise
 const ExerciseEdit = ({deleteExercise}) => {
 
     const [title, setTitle] = useState(null)
