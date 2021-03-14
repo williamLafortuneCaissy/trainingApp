@@ -1,6 +1,6 @@
 import React, { useRef }  from "react";
 import { Switch, Route, useRouteMatch, Redirect, Prompt } from 'react-router-dom';
-import data from '../../../data/dataSceance'
+import data from '../../../data/dataPlan'
 import Header from "../../_global/header";
 import Set from "./Set";
 

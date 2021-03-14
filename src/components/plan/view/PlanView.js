@@ -3,7 +3,7 @@ import { Card, Container } from "react-bootstrap";
 import data from '../../../data/dataPlan'
 import Header from "../../_global/header";
 
-const PlanSummary = () => {
+const PlanView = () => {
 
     return (
         <>
@@ -47,4 +47,4 @@ const PlanSummary = () => {
     )
 }
 
-export default PlanSummary;
+export default PlanView;
