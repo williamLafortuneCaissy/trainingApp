@@ -1,9 +1,11 @@
 import React, { Fragment }  from "react";
 import { Card, Container } from "react-bootstrap";
-import data from '../../../data/dataPlan'
+import fakedata from '../../../data/dataPlan'
 import Header from "../../_global/header";
 
 const PlanSummary = () => {
+
+    const data = fakedata[0];
 
     return (
         <>

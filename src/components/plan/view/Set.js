@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 // eslint-disable-next-line
 import { Button, Card, Col, Container, Modal, ProgressBar, Row } from 'react-bootstrap';
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
-import data from '../../../data/dataPlan'
+import fakedata from '../../../data/dataPlan'
 import Timer from '../../_global/timer';
 
 
@@ -11,6 +11,8 @@ const Set = (props) => {
     let { setId } = useParams(); //get url id base on parent :setId
     setId = Number(setId);
     const { path } = useRouteMatch('/exercise'); //path = baseUrl that matches until /active
+
+    const data = fakedata[0];
 
     // data vars
     const set = data.sets[setId];

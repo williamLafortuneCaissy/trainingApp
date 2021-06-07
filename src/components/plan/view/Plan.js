@@ -1,6 +1,6 @@
 import React, { useRef }  from "react";
 import { Switch, Route, useRouteMatch, Redirect, Prompt } from 'react-router-dom';
-import data from '../../../data/dataPlan'
+import fakedata from '../../../data/dataPlan'
 import Header from "../../_global/header";
 import Set from "./Set";
 
@@ -11,11 +11,13 @@ const Plan = () => {
     let { path } = useRouteMatch(); // returns baseUrl
     const layoutRef = useRef(null); // used to resetFocus on exercise switch
 
+    const data = fakedata[0];
+
     const promptMessage = (location) => {
         if (location.pathname.startsWith("/exercise")) {
             return true;
         } else {
-            return 'Are you sure you want to go to leave?';
+            return 'Are you sure you want to leave?';
         }
     }
 
