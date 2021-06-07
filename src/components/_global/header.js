@@ -16,7 +16,7 @@ const Header = (props) => {
                 }
             </div>
             <div className="header-center">
-                <h1 className="h4 text-truncate mb-0 py-2">{props.title}</h1>
+                <h1 className="h4 text-truncate py-2">{props.title}</h1>
             </div>
             <div className="header-right">
                 {props.nextHref &&
