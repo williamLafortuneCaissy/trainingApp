@@ -10,6 +10,9 @@ import SetEdit from './SetEdit';
 // ===============================================================
 const PlanEdit = () => {
 
+	// TODO: SAVE TITLE IN FAKE DATA, then process with exerciseEdit's form
+	const [title, setTitle] = useState(null)
+
 	const [sets, setSets] = useState([])
 
     // this simulates the next set id
