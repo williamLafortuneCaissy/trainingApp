@@ -42,7 +42,7 @@ const Set = ({data, nextSet}) => {
         let btn = null;
 
         if (activeSerie < data.series) {
-            btn = <Button variant="secondary" block onClick={() => setActiveSerie(activeSerie+1)}>Next Serie</Button>
+            btn = <Button variant="secondary" block onClick={() => setActiveSerie(activeSerie+1)}>Next Series</Button>
         } else {
             btn = <Button variant="secondary" block onClick={nextSet}>Next Set</Button>
         }

@@ -19,6 +19,8 @@
     }
 
     &-number {
-        font-family: 'Roboto Slab', serif;
+        color: $primary;
+        font-weight: 600
+        // font-family: 'Roboto Slab', serif;
     }
 }

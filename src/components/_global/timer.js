@@ -13,7 +13,6 @@ const Timer = (props) => {
         setTimer(true);
     }
     const stopTimer = () => {
-        setSeconds(0);
         setTimer(false);
     }
 
@@ -40,7 +39,7 @@ const Timer = (props) => {
         <Fragment>
 
             <Button size="lg" onClick={startTimer}>Start Timer</Button>
-            <Modal centered show={timer} onHide={stopTimer} className="text-dark timer">
+            <Modal centered show={timer} onExited={stopTimer} className="text-dark timer">
                 <Modal.Body>
                     <div>
                         <div className="display-1 timer-number mb-5">
