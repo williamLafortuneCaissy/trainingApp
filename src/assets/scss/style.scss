@@ -10,7 +10,7 @@
 @import "custom/forms";
 
 @import "components/header";
-@import "components/planExercise";
+@import "components/set";
 @import "components/timer";
 
 
@@ -25,7 +25,8 @@
 .lh-1 {
     line-height: 1 !important
 }
-.reboot-button {
+
+button {
     @include reboot-button()
 }
 

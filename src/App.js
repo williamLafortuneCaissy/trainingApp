@@ -2,7 +2,7 @@ import './assets/scss/style.scss';
 
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import PlanView from './components/plan/view/PlanView';
-import Plan from './components/plan/view/Plan';
+import PlanStart from './components/plan/view/PlanStart';
 import PlanEdit from './components/plan/edit/PlanEdit';
 import PlanList from './components/plan/list/PlanList';
 
@@ -36,7 +36,7 @@ function App() {
                         <PlanView />
                     </Route>
                     <Route path={'/plan/:planId'}>
-                        <Plan />
+                        <PlanStart />
                     </Route>
                     <Route path={'/plan'}>
                         <PlanList />

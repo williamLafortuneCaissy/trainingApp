@@ -6,87 +6,55 @@ import fakedata from '../../../data/dataPlan'
 import Timer from '../../_global/timer';
 
 
-const Set = (props) => {
-    // url variables
-    let { setId } = useParams(); //get url id base on parent :setId
-    setId = Number(setId);
-    const { path } = useRouteMatch('/exercise'); //path = baseUrl that matches until /active
+const Set = ({data, nextSet}) => {
 
-    const data = fakedata.find(x => x.id === setId);
+    const [activeSerie, setActiveSerie] = useState(1)
 
-    // data vars
-    const set = data.sets[setId];
-    const nbSets = data.sets.length;
-    const progress = setId / (nbSets-1) * 100;
-
-    const [seriesDone, setSeriesDone] = useState(0);
-
+    // force the reset of activeSerie everytime its a new sets
     useEffect(() => {
-        console.log('reset Focus');
-        props.resetFocus();
-    });
+        setActiveSerie(1)
+    }, [data])
+
+
+    const getSeriesBtns = () => {
+
+        let btns = [];
+        for (let i = 1; i <= data.series; i++) {
+            let className = 'series-btn ';
+
+            if (i <= activeSerie) {
+                className+= 'active ';
+            }
+
+            btns.push(
+                <button
+                    key={`Serie${i}`}
+                    onClick={() => setActiveSerie(i)}
+                    className={className}>
+                    {i}
+                </button>
+            )
+        }
+        return btns;
+    }
 
     const getNextBtn = () => {
         let btn = null;
 
-        // const currentStatus = null
-        if (seriesDone < set.series) {
-            btn =
-                <Button variant="secondary" block onClick={() => setSeriesDone(seriesDone+1)}>Check</Button>
-        } else if (setId < nbSets-1) {
-            btn =
-                <Link to={`${path}/${setId+1}`} onClick={() => setSeriesDone(0)} className="btn btn-secondary btn-block">
-                    <span>Next</span>
-                    <i className="mdi mdi-arrow-right lh-1"></i>
-                </Link>
-        } else if (setId === nbSets-1) {
-            btn =
-                <Link to={`/`} className="btn btn-secondary btn-block">
-                    <span>Done !</span>
-                </Link>
+        if (activeSerie < data.series) {
+            btn = <Button variant="secondary" block onClick={() => setActiveSerie(activeSerie+1)}>Next Serie</Button>
         } else {
-            console.error("Could not get PlanExercise's next btn", setId, nbSets);
+            btn = <Button variant="secondary" block onClick={nextSet}>Next Set</Button>
         }
 
         return btn;
 
     }
 
-    const getSeriesBtns = () => {
-
-        // function that sets the right serie based on the clicked btn
-        const toggleSeriesDone = (serieId) => {
-            if (seriesDone === serieId+1) {
-                // if clicked on the last active btn, it toggles it
-                setSeriesDone(serieId)
-            } else {
-                // else make the clicked btn active
-                setSeriesDone(serieId+1)
-            }
-        }
-
-        let el = [];
-        for (let i = 0; i < set.series; i++) {
-
-            // doneClass = 'done' on all btns before seriesDone number
-            const doneClass = i < seriesDone ? 'done' : '';
-
-            el.push(
-                <button
-                    key={`Serie${i}`}
-                    onClick={() => toggleSeriesDone(i)}
-                    className={`series-btn ${doneClass}`}>
-                    x
-                </button>
-            )
-        }
-        return el;
-    }
-
     return (
         <>
             <main className="layout-main container d-flex flex-column">
-                {set.exercises.map((exercise, key) => (
+                {data.exercises.map((exercise, key) => (
                     <Card body key={key} className="text-center mb-3">
                         <div className="h2">{exercise.title}</div>
                         {exercise.description &&
@@ -117,7 +85,7 @@ const Set = (props) => {
                     </Card>
                 ))}
                 <div className="mt-auto mb-3">
-                    {set.series &&
+                    {data.series > 1 &&
                         <Fragment>
                             <div className="text-center mb-3">
                                 <div className="text-light mb-3 lh-1">Series</div>
@@ -129,29 +97,6 @@ const Set = (props) => {
                     {getNextBtn()}
                 </div>
             </main>
-            <footer className="layout-footer bg-white text-primary border-top">
-                <div className="px-3 pt-3">
-                    <ProgressBar now={progress} />
-                </div>
-                <Row noGutters>
-                    <Col xs={5}>
-                        {setId > 0 &&
-                            <Link to={`${path}/${setId - 1}`} className="text-reset p-3 d-flex align-items-center">
-                                <i className="mdi mdi-chevron-left"></i>
-                                <span>Previous Set</span>
-                            </Link>
-                        }
-                    </Col>
-                    <Col xs={{size:5, offset:2}}>
-                        {setId < nbSets-1 &&
-                            <Link to={`${path}/${setId + 1}`} className="text-reset p-3 d-flex align-items-center justify-content-end">
-                                <span>Next Set</span>
-                                <i className="mdi mdi-chevron-right"></i>
-                            </Link>
-                        }
-                    </Col>
-                </Row>
-            </footer>
         </>
     );
 }

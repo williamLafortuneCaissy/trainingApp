@@ -17,7 +17,7 @@ const PlanList = () => {
                 <main>
                     <ListGroup>
                         {data.map((plan, key) => (
-                            <ListGroup.Item key={key}>
+                            <ListGroup.Item key={key} className="bg-light">
                                 <Form.Row>
                                     <Col xs="6" className="align-self-center"><h2 className="h5">{plan.title}</h2></Col>
                                     <Col xs="3">
