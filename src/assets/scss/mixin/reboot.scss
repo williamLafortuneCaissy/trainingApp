@@ -1,5 +1,5 @@
 // https://gist.github.com/MoOx/9137295
-@mixin reboot-button {
+button {
     border: none;
     margin: 0;
     padding: 0;
@@ -21,4 +21,8 @@
 
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
+
+    &:focus {
+        outline: 0;
+    }
 }

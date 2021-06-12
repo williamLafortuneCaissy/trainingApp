@@ -9,7 +9,6 @@ $superset-padding-y: map-get($spacers, 2);
     margin-bottom: map-get($spacers, 3);
 
     &-delete {
-        @include reboot-button();
         float: right;
         padding: $superset-padding-y $superset-padding-x;
         margin-right: -$superset-padding-x;

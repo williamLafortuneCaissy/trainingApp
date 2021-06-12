@@ -26,11 +26,6 @@
     line-height: 1 !important
 }
 
-button {
-    @include reboot-button()
-}
-
-
 // components
 .card {
     color: $body-color;
