@@ -153,6 +153,7 @@ const data = [
     {
         "id" : 2,
         "title": "My 2nd Plan",
+        "sets": [],
     }
 ]
 

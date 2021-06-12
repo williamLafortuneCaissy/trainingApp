@@ -1,7 +1,7 @@
 import './assets/scss/style.scss';
 
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import PlanSummary from './components/plan/view/PlanSummary';
+import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
+import PlanView from './components/plan/view/PlanView';
 import Plan from './components/plan/view/Plan';
 import PlanEdit from './components/plan/edit/PlanEdit';
 import PlanList from './components/plan/list/PlanList';
@@ -12,11 +12,9 @@ function App() {
         <div className="App">
             <Router>
                 <Switch>
+                    {/*
                     <Route path={'/exercise'}>
                         <Plan />
-                    </Route>
-                    <Route path={'/create'}>
-                        <PlanEdit />
                     </Route>
                     <Route path={'/plan'}>
                         <PlanSummary />
@@ -30,6 +28,20 @@ function App() {
                         <Link to={"/list"} className="btn btn-primary">List</Link>
                         <Link to={"/exercise"} className="btn btn-primary">Start</Link>
                     </Route>
+                     */}
+                    <Route path={'/plan/create'}>
+                        <PlanEdit />
+                    </Route>
+                    <Route path={'/plan/:planId/view'}>
+                        <PlanView />
+                    </Route>
+                    <Route path={'/plan/:planId'}>
+                        <Plan />
+                    </Route>
+                    <Route path={'/plan'}>
+                        <PlanList />
+                    </Route>
+                    <Redirect from="/" to="/plan" />
                 </Switch>
             </Router>
         </div>

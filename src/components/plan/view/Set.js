@@ -12,7 +12,7 @@ const Set = (props) => {
     setId = Number(setId);
     const { path } = useRouteMatch('/exercise'); //path = baseUrl that matches until /active
 
-    const data = fakedata[0];
+    const data = fakedata.find(x => x.id === setId);
 
     // data vars
     const set = data.sets[setId];

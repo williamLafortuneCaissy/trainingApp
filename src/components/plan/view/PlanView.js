@@ -1,9 +1,14 @@
 import React, { Fragment }  from "react";
 import { Card, Container } from "react-bootstrap";
-import data from '../../../data/dataPlan'
+import { useParams } from "react-router";
+import fakedata from '../../../data/dataPlan'
 import Header from "../../_global/header";
 
 const PlanView = () => {
+
+    let { planId } = useParams(); //get url id base on parent :planId
+    planId = Number(planId); // useParams returns a string, we convert to number
+    const data = fakedata.find(x => x.id === planId);
 
     return (
         <>
