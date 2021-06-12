@@ -22,8 +22,18 @@ const PlanStart = () => {
 
     const nbSets = data.sets.length;
 
-    //  0 / 12
-    const progress = activeSet / nbSets * 100;
+    const getProgress = () => {
+
+        let progress = null
+        if (activeSet == 1) {
+            progress = 0
+        } else {
+            progress = activeSet / nbSets * 100;
+        }
+
+        return progress
+
+    }
 
     // TODO: Fix prompt message
     const promptMessage = (location) => {
@@ -32,9 +42,6 @@ const PlanStart = () => {
         //     return 'Are you sure you want to leave?';
         // }
         return true;
-    }
-
-    const resetFocus = () => {
     }
 
     // reset :focus when we change sets
@@ -48,13 +55,13 @@ const PlanStart = () => {
                 <Prompt when={true} message={promptMessage}/>
                 <Header title={data.title} backHref={'/plan'} />
 
-                <Set data={data.sets[activeSet-1]} nextSet={nextSet} layoutRef={layoutRef} resetFocus={resetFocus}/>
+                <Set data={data.sets[activeSet-1]} nextSet={nextSet} />
 
                 <footer className="layout-footer bg-white text-primary border-top">
                     <div className="px-3 pt-3">
-                        <ProgressBar now={progress} />
+                        <ProgressBar now={getProgress()} />
                     </div>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex">
                         {activeSet > 1 &&
                             <div className="p-2">
                                 <button  className="p-2" onClick={previousSet}>
@@ -64,7 +71,7 @@ const PlanStart = () => {
                             </div>
                         }
                         {activeSet < nbSets &&
-                            <div className="p-2">
+                            <div className="p-2 ml-auto">
                                 <button  className="p-2" onClick={nextSet}>
                                     <span>Next Set</span>
                                     <i className="mdi mdi-chevron-right"></i>
