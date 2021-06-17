@@ -2,7 +2,7 @@ import './assets/scss/style.scss';
 
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import PlanView from './components/plan/view/PlanView';
-import PlanStart from './components/plan/view/PlanStart';
+import PlanStart from './components/plan/start/PlanStart';
 import PlanEdit from './components/plan/edit/PlanEdit';
 import PlanList from './components/plan/list/PlanList';
 
