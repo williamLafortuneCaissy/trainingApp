@@ -11,28 +11,26 @@ const PlanList = () => {
 
     const data = fakedata
     return (
-        <>
+        <div className="layout">
             <Header title={'Plans'} next="Create" nextHref={url+"/create"} />
-            <Container>
-                <main>
-                    <ListGroup>
-                        {data.map((plan, key) => (
-                            <ListGroup.Item key={key} className="bg-light">
-                                <Form.Row>
-                                    <Col xs="6" className="align-self-center"><h2 className="h5">{plan.title}</h2></Col>
-                                    <Col xs="3">
-                                        <Link to={url+'/'+plan.id+'/view'} className="btn btn-block btn-outline-primary">View</Link>
-                                    </Col>
-                                    <Col xs="3">
-                                        <Link to={url+'/'+plan.id} className="btn btn-block btn-primary">Start</Link>
-                                    </Col>
-                                </Form.Row>
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
-                </main>
-            </Container>
-        </>
+            <main className="layout-main container">
+                <ListGroup>
+                    {data.map((plan, key) => (
+                        <ListGroup.Item key={key} className="bg-light">
+                            <Form.Row>
+                                <Col xs="6" className="align-self-center"><h2 className="h5">{plan.title}</h2></Col>
+                                <Col xs="3">
+                                    <Link to={url+'/'+plan.id+'/view'} className="btn btn-block btn-outline-primary">View</Link>
+                                </Col>
+                                <Col xs="3">
+                                    <Link to={url+'/'+plan.id} className="btn btn-block btn-primary">Start</Link>
+                                </Col>
+                            </Form.Row>
+                        </ListGroup.Item>
+                    ))}
+                </ListGroup>
+            </main>
+        </div>
     );
 }
 

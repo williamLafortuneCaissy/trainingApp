@@ -11,9 +11,9 @@ const PlanView = () => {
     const data = fakedata.find(x => x.id === planId);
 
     return (
-        <>
-            <Header title={data.title} next={'Start'} nextHref={'/exercise'} backHref="/"/>
-            <Container>
+        <div className="layout">
+            <Header title={data.title} next={'Start'} nextHref={'/plan/'+data.id} backHref="/"/>
+            <main className="layout-main container">
                 {data.sets.map((set, setKey) => (
                     <Card body key={setKey++} className="mb-3">
 
@@ -47,8 +47,8 @@ const PlanView = () => {
 
                     </Card>
                 ))}
-            </Container>
-        </>
+            </main>
+        </div>
     )
 }
 
