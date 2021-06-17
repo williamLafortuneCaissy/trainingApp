@@ -7,21 +7,13 @@
 
 @import "custom/global";
 @import "custom/buttons";
-@import "custom/forms";
 
 @import "components/header";
+@import "components/planEdit";
 @import "components/set";
 @import "components/timer";
 
 
-// helpers
-.sticky-bottom {
-    @supports (position: sticky) {
-        position: sticky;
-        bottom: 0;
-        z-index: $zindex-sticky;
-    }
-}
 .lh-1 {
     line-height: 1 !important
 }

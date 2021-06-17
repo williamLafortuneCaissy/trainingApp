@@ -54,7 +54,7 @@ const ExerciseEdit = ({deleteExercise}) => {
                     </Form.Row>
                 </Form.Group>
             </Row>
-            <hr className="border-light"/>
+            <hr/>
         </>
     );
 }

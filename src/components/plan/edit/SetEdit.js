@@ -43,15 +43,16 @@ const SetEdit = ({deleteSet}) => {
 
     return (
         <>
-
-            <div className="superSet">
-                {exercises?.map((id) => (
-                    <ExerciseEdit key={id} deleteExercise={() => deleteExercise(id)}/>
-                ))}
-                <div className="text-center mt-n3 mb-n2">
-                    <button type="button" className="py-2 px-3 reboot-button" onClick={addExercise}><FontAwesomeIcon icon={faPlus} /></button>
-                </div>
-            </div>
+            <Card className="mb-3 superSet">
+                <Card.Body>
+                    {exercises?.map((id) => (
+                        <ExerciseEdit key={id} deleteExercise={() => deleteExercise(id)}/>
+                    ))}
+                    <div className="text-center">
+                        <button type="button" className="my-n2 py-2 px-3 reboot-button" onClick={addExercise}><FontAwesomeIcon icon={faPlus} /></button>
+                    </div>
+                </Card.Body>
+            </Card>
         </>
     );
 }
