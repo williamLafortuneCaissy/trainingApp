@@ -11,10 +11,10 @@ $superset-padding-y: map-get($spacers, 2);
 
     select,
     input {
-        border-color: lighten($primary, 60%);
+        border-color: rgba($input-focus-border-color, .2);
         box-shadow: none;
     }
     hr {
-        border-color: lighten($primary, 60%);
+        border-color: $primary;
     }
 }
