@@ -13,11 +13,14 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
 
     return (
         <>
-            <button type="button" className="superSet-delete" onClick={deleteExercise}>
-                <FontAwesomeIcon icon={faTimes} />
-            </button>
+
             <Form.Group>
-                <Form.Label>Exercise</Form.Label>
+                <div className="d-flex align-items-start">
+                    <Form.Label>Exercise</Form.Label>
+                    <button type="button" className="ml-auto" onClick={deleteExercise}>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
+                </div>
                 <Field
                     className="form-control"
                     id={baseName+'.title'}
@@ -27,7 +30,7 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
                 />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Description (optionnal)</Form.Label>
+                <Form.Label>Description</Form.Label>
                 <Field
                     className="form-control"
                     id={baseName+'.description'}
@@ -36,8 +39,8 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
                     placeholder="ex: 1 per leg"
                 />
             </Form.Group>
-            <Row className="pb-2"> {/* pb-2 to match label's line-height */}
-                <Form.Group as={Col} xs="6" className="mb-0">
+            <Row className="pb-2">
+                <Form.Group as={Col} xs="6">
                     <Form.Label>Reps / Secs</Form.Label>
                     <Form.Row>
                         <Col xs="6">
@@ -62,8 +65,8 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
                         </Col>
                     </Form.Row>
                 </Form.Group>
-                <Form.Group as={Col} xs="6" className="mb-0">
-                    <Form.Label>Weight (optionnal)</Form.Label>
+                <Form.Group as={Col} xs="6">
+                    <Form.Label>Weight</Form.Label>
                     <Form.Row>
                         <Col xs="6">
                             <Field
@@ -75,6 +78,21 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
                             />
                         </Col>
                         <Col xs="6" className="align-self-end">lbs</Col>
+                    </Form.Row>
+                </Form.Group>
+                <Form.Group as={Col} xs="6" className="mb-0">
+                    <Form.Label>Break</Form.Label>
+                    <Form.Row>
+                        <Col xs="6">
+                            <Field
+                                className="form-control"
+                                id={baseName+'.break'}
+                                name={baseName+'.break'}
+                                type="number"
+                                placeholder="ex: 15"
+                            />
+                        </Col>
+                        <Col xs="6" className="align-self-end">sec</Col>
                     </Form.Row>
                 </Form.Group>
             </Row>

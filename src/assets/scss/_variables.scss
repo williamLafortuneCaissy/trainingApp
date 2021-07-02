@@ -2,7 +2,7 @@
 $primary: #126873;
 $secondary: #17C29B;
 $tertiary: #0B877E;
-$light: lighten(#89FAD4, 20%);
+$light: lighten($secondary, 50%);
 $dark: #001726;
 
 $body-color: $primary;
@@ -23,6 +23,8 @@ $border-radius-lg: 1rem;
 
 $card-bg: $light;
 $card-border-radius: $border-radius-lg;
+$card-border-color: rgba(0,0,0,0.1);
+
 
 $btn-border-radius-sm: 100px;
 $btn-border-radius: 100px;

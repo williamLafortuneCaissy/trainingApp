@@ -1,7 +1,7 @@
 $superset-padding-x: map-get($spacers, 3);
 $superset-padding-y: map-get($spacers, 2);
 
-.superSet {
+.set {
     &-delete {
         float: right;
         line-height: 1;
@@ -9,9 +9,16 @@ $superset-padding-y: map-get($spacers, 2);
         margin: -$card-spacer-x;
     }
 
+    &-btn {
+        display: inline-grid;
+        place-content: center;
+        width: 40px;
+        height: 40px;
+    }
+
     select,
     input {
-        border-color: rgba($input-focus-border-color, .2);
+        border-color: $card-border-color;
         box-shadow: none;
     }
     hr {

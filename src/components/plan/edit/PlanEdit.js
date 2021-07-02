@@ -1,4 +1,4 @@
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Formik, Field, FieldArray, useFormik, Form as FormikForm, ErrorMessage } from 'formik';
 import React, { useState } from 'react';
@@ -38,7 +38,7 @@ const PlanEdit = () => {
 			<main className="layout-main container">
 				<Formik
 					initialValues={initialValues}
-					// validationSchema={validationSchema}
+					validationSchema={validationSchema}
 					onSubmit={onSubmit}
 					validateOnBlur={false}
 					validateOnChange={false}

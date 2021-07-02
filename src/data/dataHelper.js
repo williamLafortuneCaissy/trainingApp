@@ -8,6 +8,7 @@ const exerciseFormat = {
 }
 
 const setFormat = {
+    series: '',
     exercises: [ exerciseFormat ]
 }
 
