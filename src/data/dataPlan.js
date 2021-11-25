@@ -1,7 +1,7 @@
 const data = [
     {
         "id" : 1,
-        "title": "My First Plan",
+        "title": "Yoga Routine",
         "sets" : [
             {
                 "series": 1,
@@ -164,11 +164,11 @@ const data = [
 
         ],
     },
-    {
-        "id" : 2,
-        "title": "My 2nd Plan",
-        "sets": [],
-    }
+    // {
+    //     "id" : 2,
+    //     "title": "My 2nd Plan",
+    //     "sets": [],
+    // }
 ]
 
 export default data;
