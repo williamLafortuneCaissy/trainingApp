@@ -1,40 +1,32 @@
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Field } from 'formik';
 import React, { useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 // ==============================================
 // this manages the form
 // ==============================================
 // @param {func} deleteExercise deletes this exercise
-const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
-
-    const baseName = 'sets['+setPos+'].exercises['+exercisePos+']';
+const ExerciseEdit = ({ removeExercise }) => {
 
     return (
         <>
-
             <Form.Group>
                 <div className="d-flex align-items-start">
                     <Form.Label>Exercise</Form.Label>
-                    <button type="button" className="ml-auto" onClick={deleteExercise}>
+                    <button type="button" className="ml-auto" onClick={removeExercise}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
                 </div>
-                <Field
-                    className="form-control"
-                    id={baseName+'.title'}
-                    name={baseName+'.title'}
+                <Form.Control
+                    name={'exercise'}
                     type="text"
                     placeholder="ex: Foward Fold"
                 />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Description</Form.Label>
-                <Field
-                    className="form-control"
-                    id={baseName+'.description'}
-                    name={baseName+'.description'}
+                <Form.Control
+                    name={'description'}
                     type="text"
                     placeholder="ex: 1 per leg"
                 />
@@ -44,24 +36,20 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
                     <Form.Label>Reps / Secs</Form.Label>
                     <Form.Row>
                         <Col xs="6">
-                            <Field
-                                className="form-control"
-                                id={baseName+'.nbs'}
-                                name={baseName+'.nbs'}
+                            <Form.Control
+                                name={'rep'}
                                 type="number"
-                                placeholder="ex: 15"
+                                placeholder="0"
                             />
                         </Col>
                         <Col xs="6">
-                            <Field
-                                className="custom-select"
-                                id={baseName+'.nbs'}
-                                name={baseName+'.nbsType'}
+                            <Form.Control
+                                name={'nbsType'}
                                 as="select"
                             >
-                                <option value="rep">Rep</option>
-                                <option value="sec">Sec</option>
-                            </Field>
+                                <option key={'rep'} value="rep">Rep</option>
+                                <option key={'sec'} value="sec">Sec</option>
+                            </Form.Control>
                         </Col>
                     </Form.Row>
                 </Form.Group>
@@ -69,12 +57,10 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
                     <Form.Label>Weight</Form.Label>
                     <Form.Row>
                         <Col xs="6">
-                            <Field
-                                className="form-control"
-                                id={baseName+'.weight'}
-                                name={baseName+'.weight'}
+                            <Form.Control
+                                name={'weight'}
                                 type="number"
-                                placeholder="ex: 15"
+                                placeholder="0"
                             />
                         </Col>
                         <Col xs="6" className="align-self-end">lbs</Col>
@@ -84,19 +70,17 @@ const ExerciseEdit = ({setPos, exercisePos, deleteExercise}) => {
                     <Form.Label>Break</Form.Label>
                     <Form.Row>
                         <Col xs="6">
-                            <Field
-                                className="form-control"
-                                id={baseName+'.break'}
-                                name={baseName+'.break'}
+                            <Form.Control
+                                name={'break'}
                                 type="number"
-                                placeholder="ex: 15"
+                                placeholder="0"
                             />
                         </Col>
                         <Col xs="6" className="align-self-end">sec</Col>
                     </Form.Row>
                 </Form.Group>
             </Row>
-            <hr/>
+            <hr />
         </>
     );
 }

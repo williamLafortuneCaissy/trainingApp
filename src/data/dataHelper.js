@@ -1,4 +1,3 @@
-
 const exerciseFormat = {
     title: '',
     description: '',
@@ -9,7 +8,7 @@ const exerciseFormat = {
 
 const setFormat = {
     series: '',
-    exercises: [ exerciseFormat ]
+    exercises: []
 }
 
 export { exerciseFormat, setFormat };
