@@ -9,7 +9,7 @@ import uuid from 'react-uuid';
 // this manages the add / remove / list exercice
 // =======================================================
 // @param {func} deleteSet deletes this set
-const SetEdit = ({ index, set, addExercise, removeExercise }) => {
+const SetEdit = ({ index, set, addExercise, removeExercise, handleChange }) => {
     // console.log("set: ", set)
 
     useEffect(() => {
@@ -27,10 +27,12 @@ const SetEdit = ({ index, set, addExercise, removeExercise }) => {
         return options
     }
 
-    const exerciceElements = set.exercises.map(exercise => (
+    const exerciceElements = set.exercises.map((exercise) => (
         <ExerciseEdit
             key={exercise.id}
+            exercise={exercise}
             removeExercise={() => removeExercise(set.id, exercise.id)}
+            handleChange={handleChange}
         />
     ))
 
@@ -42,14 +44,13 @@ const SetEdit = ({ index, set, addExercise, removeExercise }) => {
                         <Form.Label className="mb-0 mr-3">Series:</Form.Label>
                         <Form.Control
                             as="select"
-                            name={"serie"}
+                            name={`series.${set.id}`}
+                            onChange={handleChange}
+                            value={set.series}
                         >
                             {getOptions()}
                         </Form.Control>
                     </div>
-                    {/* <button className="ml-auto" type="button" onClick={deleteSet}>
-                        <FontAwesomeIcon icon={faTimes} />
-                    </button> */}
                 </Card.Header>
                 <Card.Body>
                     {exerciceElements}

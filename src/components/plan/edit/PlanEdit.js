@@ -25,11 +25,52 @@ const PlanEdit = () => {
 	//used to check if we have a set without any exercise
 	const [checkEmptySets, setCheckEmptySets] = useState(false);
 
-	function updateTitle(e) {
-		setForm(prevForm => ({
-			...prevForm,
-			title: e.target.value,
-		}))
+	// simple helper used to simplify complex setForm()
+	// return new object with the updated prop
+	// {prevObject} | "prop"
+	function updateProp(prevObject, prop, value) {
+		return {
+			...prevObject,
+			[prop]: value
+		}
+	}
+
+	function handleChange(e) {
+		// inputName is: prop.{setId}.{exerciseId}
+		// setId and exerciseId if nessessary
+
+		const splittedName = e.target.name.split(".")
+		const prop = splittedName[0]
+		const setId = splittedName[1] || null
+		const exerciseId = splittedName[2] || null
+
+		setForm(prevForm => {
+			if (!setId) {
+				return updateProp(prevForm, prop, e.target.value)
+			} else {
+				return {
+					...prevForm,
+					sets: prevForm.sets.map(prevSet => {
+						if (prevSet.id === setId) {
+							if (!exerciseId) {
+								// update 2nd level (series)
+								return updateProp(prevSet, prop, e.target.value)
+							} else {
+								return {
+									...prevSet,
+									exercises: prevSet.exercises.map(prevExercise => (
+										// update 3rd level (title, description, etc...)
+										updateProp(prevExercise, prop, e.target.value)
+									)),
+								}
+							}
+						} else {
+							prevSet
+						}
+					})
+				}
+			}
+		})
 	}
 
 	function addSet() {
@@ -39,7 +80,7 @@ const PlanEdit = () => {
 				...prevForm.sets,
 				{
 					id: uuid(),
-					series: '',
+					series: "1",
 					exercises: []
 				}
 			],
@@ -57,10 +98,12 @@ const PlanEdit = () => {
 							...prevSet.exercises,
 							{
 								id: uuid(),
+								setId: prevSet.id,
 								title: '',
 								description: '',
 								nbs: '', // number
 								nbsType: 'rep', // rep || sec
+								weight: '',
 								break: '',
 							}
 						],
@@ -69,10 +112,6 @@ const PlanEdit = () => {
 					prevSet
 			)),
 		}))
-	}
-
-	function removeSet(setId) {
-		console.log('removeSet')
 	}
 
 	function removeExercise(setId, exerciseId) {
@@ -94,6 +133,7 @@ const PlanEdit = () => {
 		setCheckEmptySets(true)
 	}
 
+	// remove every sets that has no exercises
 	useEffect(() => {
 		if (checkEmptySets) {
 			setForm(prevForm => {
@@ -106,13 +146,18 @@ const PlanEdit = () => {
 		}
 	}, [checkEmptySets]);
 
+	function handleSubmit(e) {
+		e.preventDefault()
+		console.log("Submit", form)
+	}
 
-	const setElements = form.sets.map((set, i) => (
+	const setElements = form.sets.map(set => (
 		<SetEdit
 			key={set.id}
 			set={set}
 			addExercise={() => addExercise(set.id)}
 			removeExercise={removeExercise}
+			handleChange={handleChange}
 		/>
 	))
 
@@ -120,7 +165,7 @@ const PlanEdit = () => {
 		<div className="layout">
 			<Header title={'Create plan'} backHref="/" />
 			<main className="layout-main container">
-				<Form>
+				<Form onSubmit={handleSubmit}>
 					<Form.Group>
 						<Form.Label htmlFor="planTitle">Main Title</Form.Label>
 						<Form.Control
@@ -129,7 +174,8 @@ const PlanEdit = () => {
 							name="title"
 							placeholder="ex: My First Plan!"
 							value={form.title}
-							onChange={updateTitle}
+							onChange={handleChange}
+							required
 						/>
 					</Form.Group>
 					{setElements}
@@ -138,11 +184,6 @@ const PlanEdit = () => {
 							<FontAwesomeIcon icon={faPlus} />
 						</Button>
 					</div>
-
-
-					{/* {oldSets.map((id) => (
-						<SetEdit key={id} deleteSet={() => deleteSet(id)}/>
-					))} */}
 					<Button type="submit" variant="light" block className="mt-3">Save</Button>
 				</Form>
 			</main>

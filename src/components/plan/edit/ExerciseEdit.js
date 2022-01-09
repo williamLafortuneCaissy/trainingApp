@@ -6,7 +6,9 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 // this manages the form
 // ==============================================
 // @param {func} deleteExercise deletes this exercise
-const ExerciseEdit = ({ removeExercise }) => {
+const ExerciseEdit = ({ exercise, removeExercise, handleChange }) => {
+
+    const inputNameSuffix = `.${exercise.setId}.${exercise.id}`
 
     return (
         <>
@@ -18,34 +20,43 @@ const ExerciseEdit = ({ removeExercise }) => {
                     </button>
                 </div>
                 <Form.Control
-                    name={'exercise'}
+                    name={`title${inputNameSuffix}`}
                     type="text"
                     placeholder="ex: Foward Fold"
+                    onChange={handleChange}
+                    value={exercise.title}
                 />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                    name={'description'}
+                    name={`description${inputNameSuffix}`}
                     type="text"
                     placeholder="ex: 1 per leg"
+                    onChange={handleChange}
+                    value={exercise.description}
                 />
             </Form.Group>
             <Row className="pb-2">
-                <Form.Group as={Col} xs="6">
+                <Form.Group as={Col} xs="8">
                     <Form.Label>Reps / Secs</Form.Label>
                     <Form.Row>
                         <Col xs="6">
                             <Form.Control
-                                name={'rep'}
+                                name={`nbs${inputNameSuffix}`}
                                 type="number"
-                                placeholder="0"
+                                min={0}
+                                placeholder="-"
+                                onChange={handleChange}
+                                value={exercise.rep}
                             />
                         </Col>
                         <Col xs="6">
                             <Form.Control
-                                name={'nbsType'}
+                                name={`nbsType${inputNameSuffix}`}
                                 as="select"
+                                onChange={handleChange}
+                                value={exercise.nbsType}
                             >
                                 <option key={'rep'} value="rep">Rep</option>
                                 <option key={'sec'} value="sec">Sec</option>
@@ -58,9 +69,12 @@ const ExerciseEdit = ({ removeExercise }) => {
                     <Form.Row>
                         <Col xs="6">
                             <Form.Control
-                                name={'weight'}
+                                name={`weight${inputNameSuffix}`}
                                 type="number"
-                                placeholder="0"
+                                min={0}
+                                placeholder="-"
+                                onChange={handleChange}
+                                value={exercise.weight}
                             />
                         </Col>
                         <Col xs="6" className="align-self-end">lbs</Col>
@@ -71,9 +85,12 @@ const ExerciseEdit = ({ removeExercise }) => {
                     <Form.Row>
                         <Col xs="6">
                             <Form.Control
-                                name={'break'}
+                                name={`break${inputNameSuffix}`}
                                 type="number"
-                                placeholder="0"
+                                min={0}
+                                placeholder="-"
+                                onChange={handleChange}
+                                value={exercise.break}
                             />
                         </Col>
                         <Col xs="6" className="align-self-end">sec</Col>
