@@ -22,6 +22,9 @@ const PlanEdit = () => {
 		sets: []
 	})
 
+	//used to check if we have a set without any exercise
+	const [checkEmptySets, setCheckEmptySets] = useState(false);
+
 	function updateTitle(e) {
 		setForm(prevForm => ({
 			...prevForm,
@@ -88,7 +91,21 @@ const PlanEdit = () => {
 				})
 			}
 		})
+		setCheckEmptySets(true)
 	}
+
+	useEffect(() => {
+		if (checkEmptySets) {
+			setForm(prevForm => {
+				return {
+					...prevForm,
+					sets: prevForm.sets.filter(set => set.exercises.length > 0)
+				}
+			})
+			setCheckEmptySets(false)
+		}
+	}, [checkEmptySets]);
+
 
 	const setElements = form.sets.map((set, i) => (
 		<SetEdit
