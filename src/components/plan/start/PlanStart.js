@@ -57,7 +57,7 @@ const PlanStart = () => {
                 <Header title={data.title} backHref={'/plan'} />
                 <main className="layout-main container d-flex flex-column">
                     {!nbSets ?
-                        <p class="text-center">This plan has no exerces</p>
+                        <p class="text-center">This plan has no exercises</p>
                         :
                         activeSet <= nbSets ?
                             <Set data={data.sets[activeSet - 1]} nextSet={nextSet} lastSet={activeSet === nbSets} />

@@ -10,27 +10,27 @@ const PlanView = () => {
 
     const storage = JSON.parse(localStorage.getItem("plans"))
     const data = storage.find(x => x.id == planId);
-    // console.log(data)
+    console.log(data)
 
     return (
         <div className="layout">
             <Header title={data.title} next={'Start'} nextHref={'/plan/' + data.id} backHref="/" />
             <main className="layout-main container">
                 {!data.sets.length &&
-                    <p class="text-center">This plan has no exerces</p>
+                    <p class="text-center">This plan has no exercises</p>
                 }
-                {data.sets.map((set, setKey) => (
-                    <Card body key={setKey++} className="mb-3">
+                {data.sets.map(set => (
+                    <Card body key={set.id} className="mb-3">
 
-                        {/* added a second loop because of supersets */}
-                        {set.exercises.map((exercise, key) => (
-                            <Fragment key={exercise.title}>
-                                {key > 0 && <hr />}
+                        {/* added a second loop because of sets */}
+                        {set.exercises.map((exercise, exerciseIndex) => (
+                            <Fragment key={exercise.id}>
+                                {exerciseIndex > 0 && <hr />}
 
                                 <div className="d-flex justify-content-between">
                                     <div className="h4">{exercise.title}</div>
-                                    {(key === 0 && set.series) &&
-                                        <div>
+                                    {(exerciseIndex === 0 && set.series) &&
+                                        <div className="text-nowrap">
                                             <span className="font-weight-bold small">Series : </span>
                                             <span>{set.series}x</span>
                                         </div>
@@ -42,9 +42,13 @@ const PlanView = () => {
                                 <div className="mb-2">
                                     <span className="font-weight-bold small">Rep : </span>
                                     <span>
-                                        {exercise.time && `${exercise.time}s`}
-                                        {(exercise.rep && exercise.time) && <span className="mx-2">-</span>}
-                                        {exercise.rep && `${exercise.rep}x`}
+                                        {(exercise.nbs && exercise.nbsType) &&
+                                            <>
+                                                {exercise.nbs}
+                                                {exercise.nbsType === "rep" && "x"}
+                                                {exercise.nbsType === "sec" && "s"}
+                                            </>
+                                        }
                                     </span>
                                 </div>
                             </Fragment>

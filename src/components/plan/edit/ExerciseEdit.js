@@ -65,7 +65,7 @@ const ExerciseEdit = ({ exercise, removeExercise, handleChange }) => {
                         </Col>
                     </Form.Row>
                 </Form.Group>
-                <Form.Group as={Col} xs="6">
+                {/* <Form.Group as={Col} xs="6">
                     <Form.Label>Weight</Form.Label>
                     <Form.Row>
                         <Col xs="6">
@@ -80,8 +80,8 @@ const ExerciseEdit = ({ exercise, removeExercise, handleChange }) => {
                         </Col>
                         <Col xs="6" className="align-self-end">lbs</Col>
                     </Form.Row>
-                </Form.Group>
-                <Form.Group as={Col} xs="6" className="mb-0">
+                </Form.Group> */}
+                {/* <Form.Group as={Col} xs="6" className="mb-0">
                     <Form.Label>Break</Form.Label>
                     <Form.Row>
                         <Col xs="6">
@@ -96,7 +96,7 @@ const ExerciseEdit = ({ exercise, removeExercise, handleChange }) => {
                         </Col>
                         <Col xs="6" className="align-self-end">sec</Col>
                     </Form.Row>
-                </Form.Group>
+                </Form.Group> */}
             </Row>
             <hr />
         </>

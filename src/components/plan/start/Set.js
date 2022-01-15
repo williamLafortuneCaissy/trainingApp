@@ -8,7 +8,7 @@ import Timer from '../../_global/timer';
 /*
 * @param {bool} lastSet
 */
-const Set = ({data, nextSet, lastSet}) => {
+const Set = ({ data, nextSet, lastSet }) => {
 
     const [activeSerie, setActiveSerie] = useState(1)
 
@@ -24,7 +24,7 @@ const Set = ({data, nextSet, lastSet}) => {
             let className = 'series-btn ';
 
             if (i <= activeSerie) {
-                className+= 'active ';
+                className += 'active ';
             }
 
             btns.push(
@@ -44,7 +44,7 @@ const Set = ({data, nextSet, lastSet}) => {
         let onClick = null;
 
         if (activeSerie < data.series) {
-            onClick = () => setActiveSerie(activeSerie+1);
+            onClick = () => setActiveSerie(activeSerie + 1);
             text = 'Next Series';
 
         } else if (!lastSet) {
@@ -62,31 +62,26 @@ const Set = ({data, nextSet, lastSet}) => {
 
     return (
         <>
-            {data.exercises.map((exercise, key) => (
-                <Card body key={key} className="text-center mb-3">
+            {data.exercises.map(exercise => (
+                <Card body key={exercise.id} className="text-center mb-3">
                     <div className="h2">{exercise.title}</div>
                     {exercise.description &&
                         <p className="mb-1">( {exercise.description} )</p>
                     }
                     <div className="d-flex justify-content-around">
-                        {exercise.time &&
-                            <>
-                                <div className="mb-4">
-                                    <div className="display-1">{exercise.time}</div>
-                                    <div className="h3">Seconds</div>
-                                </div>
-                            </>
-                        }
-                        {exercise.rep &&
+                        {(exercise.nbs && exercise.nbsType) &&
                             <div className="mb-4">
-                                <div className="display-1">{exercise.rep}</div>
-                                <div className="h3">Times</div>
+                                <div className="display-1">{exercise.nbs}</div>
+                                <div className="h3">
+                                    {exercise.nbsType === "sec" && "Seconds"}
+                                    {exercise.nbsType === "rep" && "Repetitions"}
+                                </div>
                             </div>
                         }
                     </div>
-                    {exercise.time &&
+                    {exercise.nbsType === "sec" &&
                         <div className="mb-4">
-                            <Timer time={exercise.time} />
+                            <Timer time={exercise.nbs} />
                             {/* <div className="display-1 text-center">{timer}</div> */}
                         </div>
                     }

@@ -8,7 +8,6 @@ import uuid from 'react-uuid';
 // =======================================================
 // this manages the add / remove / list exercice
 // =======================================================
-// @param {func} deleteSet deletes this set
 const SetEdit = ({ index, set, addExercise, removeExercise, handleChange }) => {
     // console.log("set: ", set)
 
