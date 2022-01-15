@@ -7,6 +7,7 @@ import SetEdit from './SetEdit';
 import { setFormat } from '../../../data/dataHelper';
 import uuid from 'react-uuid'
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const initialValues = {
 	planTitle: '',
@@ -18,6 +19,7 @@ const initialValues = {
 // ===============================================================
 const PlanEdit = () => {
 	const [form, setForm] = useState({
+		id: uuid(),
 		title: "",
 		sets: []
 	})
@@ -146,9 +148,16 @@ const PlanEdit = () => {
 		}
 	}, [checkEmptySets]);
 
+	let history = useHistory()
 	function handleSubmit(e) {
 		e.preventDefault()
-		console.log("Submit", form)
+
+		// console.log("Submit", form)
+		const allPlans = JSON.parse(localStorage.getItem("plans")) || []
+		allPlans.push(form)
+		localStorage.setItem("plans", JSON.stringify(allPlans))
+
+		history.push('/plan')
 	}
 
 	const setElements = form.sets.map(set => (
@@ -187,7 +196,7 @@ const PlanEdit = () => {
 					<Button type="submit" variant="light" block className="mt-3">Save</Button>
 				</Form>
 			</main>
-			{console.log("render", form)}
+			{/* {console.log("render", form)} */}
 		</div>
 
 	);

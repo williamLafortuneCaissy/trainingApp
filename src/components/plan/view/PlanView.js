@@ -1,4 +1,4 @@
-import React, { Fragment }  from "react";
+import React, { Fragment } from "react";
 import { Card, Container } from "react-bootstrap";
 import { useParams } from "react-router";
 import fakedata from '../../../data/dataPlan'
@@ -7,20 +7,25 @@ import Header from "../../_global/header";
 const PlanView = () => {
 
     let { planId } = useParams(); //get url id base on parent :planId
-    planId = Number(planId); // useParams returns a string, we convert to number
-    const data = fakedata.find(x => x.id === planId);
+
+    const storage = JSON.parse(localStorage.getItem("plans"))
+    const data = storage.find(x => x.id == planId);
+    console.log(data)
 
     return (
         <div className="layout">
-            <Header title={data.title} next={'Start'} nextHref={'/plan/'+data.id} backHref="/"/>
+            <Header title={data.title} next={'Start'} nextHref={'/plan/' + data.id} backHref="/" />
             <main className="layout-main container">
+                {!data.sets.length &&
+                    <p class="text-center">This plan has no exerces</p>
+                }
                 {data.sets.map((set, setKey) => (
                     <Card body key={setKey++} className="mb-3">
 
                         {/* added a second loop because of supersets */}
                         {set.exercises.map((exercise, key) => (
                             <Fragment key={exercise.title}>
-                                {key > 0 && <hr/>}
+                                {key > 0 && <hr />}
 
                                 <div className="d-flex justify-content-between">
                                     <div className="h4">{exercise.title}</div>

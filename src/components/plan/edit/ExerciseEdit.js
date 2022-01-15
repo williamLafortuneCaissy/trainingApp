@@ -25,6 +25,7 @@ const ExerciseEdit = ({ exercise, removeExercise, handleChange }) => {
                     placeholder="ex: Foward Fold"
                     onChange={handleChange}
                     value={exercise.title}
+                    required
                 />
             </Form.Group>
             <Form.Group>

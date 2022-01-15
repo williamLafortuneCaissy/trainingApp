@@ -9,10 +9,15 @@ const PlanList = () => {
 
     const { url } = useRouteMatch();
 
-    const data = fakedata
+    // set default data so we dont have to create a plan everytime
+    if (!localStorage.getItem("plans")) {
+        localStorage.setItem("plans", JSON.stringify(fakedata))
+    }
+    const data = JSON.parse(localStorage.getItem("plans")) || []
+
     return (
         <div className="layout">
-            <Header title={'Plans'} next="Create" nextHref={url+"/create"} />
+            <Header title={'Plans'} next="Create" nextHref={url + "/create"} />
             <main className="layout-main container">
                 <ListGroup>
                     {data.map((plan, key) => (
@@ -20,10 +25,10 @@ const PlanList = () => {
                             <Form.Row>
                                 <Col xs="6" className="align-self-center"><h2 className="h5">{plan.title}</h2></Col>
                                 <Col xs="3">
-                                    <Link to={url+'/'+plan.id+'/view'} className="btn btn-block btn-outline-primary">View</Link>
+                                    <Link to={url + '/' + plan.id + '/view'} className="btn btn-block btn-outline-primary">View</Link>
                                 </Col>
                                 <Col xs="3">
-                                    <Link to={url+'/'+plan.id} className="btn btn-block btn-primary">Start</Link>
+                                    <Link to={url + '/' + plan.id} className="btn btn-block btn-primary">Start</Link>
                                 </Col>
                             </Form.Row>
                         </ListGroup.Item>
