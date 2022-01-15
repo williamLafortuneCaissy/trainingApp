@@ -34,3 +34,7 @@ body {
 i, i+* {
     vertical-align: middle;
 }
+
+.dropdown-toggle.no-caret::after {
+    content: none;
+}
