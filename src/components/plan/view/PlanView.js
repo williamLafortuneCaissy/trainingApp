@@ -10,7 +10,7 @@ const PlanView = () => {
 
     const storage = JSON.parse(localStorage.getItem("plans"))
     const data = storage.find(x => x.id == planId);
-    console.log(data)
+    // console.log(data)
 
     return (
         <div className="layout">

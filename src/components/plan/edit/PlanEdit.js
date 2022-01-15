@@ -41,6 +41,8 @@ const PlanEdit = () => {
 		// inputName is: prop.{setId}.{exerciseId}
 		// setId and exerciseId if nessessary
 
+		// console.log(e.target.name)
+
 		const splittedName = e.target.name.split(".")
 		const prop = splittedName[0]
 		const setId = splittedName[1] || null
@@ -48,6 +50,7 @@ const PlanEdit = () => {
 
 		setForm(prevForm => {
 			if (!setId) {
+				// console.log('update plan level')
 				return updateProp(prevForm, prop, e.target.value)
 			} else {
 				return {
@@ -55,19 +58,23 @@ const PlanEdit = () => {
 					sets: prevForm.sets.map(prevSet => {
 						if (prevSet.id === setId) {
 							if (!exerciseId) {
-								// update 2nd level (series)
+								// console.log('update set level')
 								return updateProp(prevSet, prop, e.target.value)
 							} else {
 								return {
 									...prevSet,
-									exercises: prevSet.exercises.map(prevExercise => (
-										// update 3rd level (title, description, etc...)
-										updateProp(prevExercise, prop, e.target.value)
-									)),
+									exercises: prevSet.exercises.map(prevExercise => {
+										if (prevExercise.id === exerciseId) {
+											// console.log('update exercise level')
+											return updateProp(prevExercise, prop, e.target.value)
+										} else {
+											return prevExercise
+										}
+									}),
 								}
 							}
 						} else {
-							prevSet
+							return prevSet
 						}
 					})
 				}
@@ -77,7 +84,7 @@ const PlanEdit = () => {
 
 	function addSet() {
 		setForm(prevForm => ({
-			title: prevForm.title,
+			...prevForm,
 			sets: [
 				...prevForm.sets,
 				{
@@ -91,7 +98,7 @@ const PlanEdit = () => {
 
 	function addExercise(setId) {
 		setForm(prevForm => ({
-			title: prevForm.title,
+			...prevForm,
 			sets: prevForm.sets.map(prevSet => (
 				prevSet.id === setId ?
 					{

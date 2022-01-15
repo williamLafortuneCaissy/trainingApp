@@ -12,8 +12,9 @@ const PlanList = () => {
     const { url } = useRouteMatch();
 
     // set default data so we dont have to create a plan everytime
-    if (!localStorage.getItem("plans")) {
+    if (!localStorage.getItem("plans") || localStorage.getItem("plans") === "[]") {
         localStorage.setItem("plans", JSON.stringify(fakedata))
+        window.alert("You have no plans, we added a default plan")
     }
     const [plans, setPlans] = useState(JSON.parse(localStorage.getItem("plans")) || []);
 
@@ -25,6 +26,7 @@ const PlanList = () => {
         localStorage.setItem("plans", JSON.stringify(plans))
     }, [plans]);
 
+    // console.log(plans)
     return (
         <div className="layout">
             <Header title={'Plans'} next="Create" nextHref={url + "/create"} />
