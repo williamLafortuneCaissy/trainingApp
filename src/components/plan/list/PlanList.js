@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, Dropdown, Form, ListGroup, Row } from 'react-bootstrap';
+import { Button, Col, Container, Dropdown, Form, ListGroup, Row, Alert } from 'react-bootstrap';
 import { Link, useRouteMatch } from 'react-router-dom';
 import Header from '../../_global/header';
 import fakedata from '../../../data/dataPlan'
@@ -10,12 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const PlanList = () => {
 
     const { url } = useRouteMatch();
-
-    // set default data so we dont have to create a plan everytime
-    if (!localStorage.getItem("plans") || localStorage.getItem("plans") === "[]") {
-        localStorage.setItem("plans", JSON.stringify(fakedata))
-        window.alert("You have no plans, we added a default plan")
-    }
+    const [alert, setAlert] = useState(false); // currently only show the "default plan added"
     const [plans, setPlans] = useState(JSON.parse(localStorage.getItem("plans")) || []);
 
     function handleDelete(planId) {
@@ -23,12 +18,26 @@ const PlanList = () => {
     }
 
     useEffect(() => {
+        // set default data so we dont have to create a plan everytime
+        if (!plans.length) {
+            setPlans(fakedata)
+            setAlert(true)
+        }
+    }, []);
+
+    useEffect(() => {
         localStorage.setItem("plans", JSON.stringify(plans))
     }, [plans]);
 
     // console.log(plans)
+
     return (
         <div className="layout">
+            {alert &&
+                <Alert variant="warning" onClose={() => setAlert(false)} dismissible>
+                    A default plan was added to the list.
+                </Alert>
+            }
             <Header title={'Plans'} next="Create" nextHref={url + "/create"} />
             <main className="layout-main container">
                 <ListGroup>

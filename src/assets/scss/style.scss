@@ -27,6 +27,13 @@
     color: $body-color
 }
 
+.alert {
+    position: absolute;
+    inset: auto 1rem 1rem 1rem;
+    z-index: $zindex-modal-backdrop - 1;
+    margin-bottom: 0;
+}
+
 
 
 
