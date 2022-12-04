@@ -6,25 +6,27 @@ import { Link } from 'react-router-dom';
 
 const Header = (props) => {
     return (
-        <header className="header layout-header">
-            <div className="header-left">
-                {props.backHref &&
-                    <Link className="header-btn" to={props.backHref}>
-                        <i className="mdi mdi-chevron-left"></i>
-                        {props.back}
-                    </Link>
-                }
-            </div>
-            <div className="header-center">
-                <h1 className="h4 text-truncate py-2">{props.title}</h1>
-            </div>
-            <div className="header-right">
-                {props.nextHref &&
-                    <Link className="header-btn" to={props.nextHref}>
-                        {props.next}
-                        <i className="mdi mdi-chevron-right"></i>
-                    </Link>
-                }
+        <header className="header layout-header ">
+            <div className="container d-flex">
+                <div className="header-left">
+                    {props.backHref &&
+                        <Link className="header-btn" to={props.backHref}>
+                            <i className="mdi mdi-chevron-left"></i>
+                            {props.back}
+                        </Link>
+                    }
+                </div>
+                <div className="header-center">
+                    <h1 className="h4 text-truncate py-2">{props.title}</h1>
+                </div>
+                <div className="header-right">
+                    {props.nextHref &&
+                        <Link className="header-btn" to={props.nextHref}>
+                            {props.next}
+                            <i className="mdi mdi-chevron-right"></i>
+                        </Link>
+                    }
+                </div>
             </div>
         </header>
     );

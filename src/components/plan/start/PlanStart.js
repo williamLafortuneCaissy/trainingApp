@@ -72,30 +72,32 @@ const PlanStart = () => {
 
                 {nbSets &&
                     <footer className="layout-footer bg-white text-primary border-top">
-                        <div className="px-3 pt-3">
-                            <ProgressBar now={getProgress()} />
-                        </div>
-                        <div className="d-flex">
-                            {activeSet > 1 &&
-                                <div className="p-2">
-                                    <button className="p-2" onClick={previousSet}>
-                                        <i className="mdi mdi-chevron-left"></i>
-                                        <span>Previous Set</span>
-                                    </button>
-                                </div>
-                            }
-                            {activeSet <= nbSets &&
-                                <div className="p-2 ml-auto">
-                                    <button className="p-2" onClick={nextSet}>
-                                        {activeSet < nbSets ?
-                                            <span>Next Set</span>
-                                            :
-                                            <span>Done</span>
-                                        }
-                                        <i className="mdi mdi-chevron-right"></i>
-                                    </button>
-                                </div>
-                            }
+                        <div className="container">
+                            <div className="px-3 pt-3">
+                                <ProgressBar now={getProgress()} />
+                            </div>
+                            <div className="d-flex">
+                                {activeSet > 1 &&
+                                    <div className="p-2">
+                                        <button className="p-2" onClick={previousSet}>
+                                            <i className="mdi mdi-chevron-left"></i>
+                                            <span>Previous Set</span>
+                                        </button>
+                                    </div>
+                                }
+                                {activeSet <= nbSets &&
+                                    <div className="p-2 ml-auto">
+                                        <button className="p-2" onClick={nextSet}>
+                                            {activeSet < nbSets ?
+                                                <span>Next Set</span>
+                                                :
+                                                <span>Done</span>
+                                            }
+                                            <i className="mdi mdi-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </footer>
                 }

@@ -34,6 +34,15 @@
     margin-bottom: 0;
 }
 
+.container {
+    max-width: 450px;
+}
+
+@media screen and (max-width: 450px) {
+    .container {
+        max-width: 100%;
+    }
+}
 
 
 
