@@ -8,6 +8,7 @@ import PlanList from './components/plan/list/PlanList';
 
 
 function App() {
+    console.log('app loaded')
     return (
         <div className="App">
             <Router>
