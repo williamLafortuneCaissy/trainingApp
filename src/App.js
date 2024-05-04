@@ -8,28 +8,10 @@ import PlanList from './components/plan/list/PlanList';
 
 
 function App() {
-    console.log('app loaded')
     return (
-        <div className="App hello">
+        <div className="App">
             <BrowserRouter basename="/trainingApp">
                 <Switch>
-                    {/*
-                    <Route path={'/exercise'}>
-                        <Plan />
-                    </Route>
-                    <Route path={'/plan'}>
-                        <PlanSummary />
-                    </Route>
-                    <Route path={'/list'}>
-                        <PlanList />
-                    </Route>
-                    <Route path={'/'}>
-                        <Link to={"/create"} className="btn btn-primary">Create</Link>
-                        <Link to={"/plan"} className="btn btn-primary">View</Link>
-                        <Link to={"/list"} className="btn btn-primary">List</Link>
-                        <Link to={"/exercise"} className="btn btn-primary">Start</Link>
-                    </Route>
-                    */}
                     <Route path={'/plan/create'}>
                         <PlanEdit />
                     </Route>
