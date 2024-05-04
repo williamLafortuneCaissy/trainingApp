@@ -1,7 +1,20 @@
 .layout {
-    min-height: 100vh;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(135deg, $tertiary, $primary);
+    color: $white;
+    border-bottom: $border-width solid $border-color;
+
+
+    @media screen and (max-width: 767.98px) {
+        min-height: 100vh;
+    }
+
+    @media screen and (min-width: 768px) {
+        height: 100%;
+        overflow: auto;
+    }
 
     &-main {
         flex-grow: 1;
@@ -18,18 +31,37 @@
         position: sticky;
         bottom: 0;
         z-index: $zindex-sticky;
+        border: $border-width solid $border-color;
+        border-bottom: none;
     }
 }
 
-.container-mobile {
-    max-width: 768px;
+.App {
+    @media screen and (min-width: 768px) {
+        height: 900px;
+        max-height: 94vh;
+        margin-block: 3vh;
+        display: flex;
+        max-width: 430px;
+        margin-inline: auto;
+        padding: 4rem 1.5rem;
+        border-radius: 3rem;
+        box-shadow: 
+            inset 0px 0px 0px -4px rgba(255, 255, 255, 0.1), 
+            1px 1px 6px rgba(0, 0, 0, 0.05), 
+            1px 1px 8px rgba(0, 0, 0, 0.07);
+    }
 }
 
 body {
-    background: linear-gradient(135deg, $tertiary, $primary);
-    color: $white;
     min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
+body>* {
+    flex-grow: 1;
+}
+
 
 i, i+* {
     vertical-align: middle;

@@ -1,9 +1,10 @@
 .header {
     background-color: $white;
     color: $primary;
-    border-bottom: $border-width solid $border-color;
+    border: $border-width solid $border-color;
 
     display: flex;
+    align-items: center;
 
     &-left {
         text-align: left;

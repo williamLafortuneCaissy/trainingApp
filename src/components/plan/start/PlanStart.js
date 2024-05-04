@@ -71,7 +71,7 @@ const PlanStart = () => {
                 </main>
 
                 {nbSets &&
-                    <footer className="layout-footer bg-white text-primary border-top">
+                    <footer className="layout-footer bg-white text-primary">
                         <div className="container">
                             <div className="px-3 pt-3">
                                 <ProgressBar now={getProgress()} />
