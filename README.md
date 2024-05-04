@@ -1,6 +1,7 @@
 # Training App
 
-Ce projet n'est pas final, je continuerais à le développer plus tard.
+Ce projet mis en pause, je continuerais à le développer plus tard.
+https://williamlafortunecaissy.github.io/trainingApp/
 
 ## Stack
 - React (CRA)
