@@ -42,7 +42,7 @@ function App() {
                     <Route path={'/plan'}>
                         <PlanList />
                     </Route>
-                    <Redirect exact from="/" to="/plan" />
+                    <Redirect from="/" to="/plan" />
                 </Switch>
             </BrowserRouter>
         </div>
