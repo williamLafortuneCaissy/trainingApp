@@ -10,7 +10,7 @@ import PlanList from './components/plan/list/PlanList';
 function App() {
     console.log('app loaded')
     return (
-        <div className="App">
+        <div className="App hello">
             <Router>
                 <Switch>
                     {/*
